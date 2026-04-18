@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantai Estetik - Home</title>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f8ff; /* Warna dasar lembut */
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Header dengan gambar latar pantai */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        /* Navigasi */
+        nav {
+            background: #ffffff;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #0077be; /* Ocean Blue */
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #f4a460; /* Sandy Brown */
+        }
+
+        /* Konten Utama */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #0077be;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        p {
+            color: #5a6c7d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0077be;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .cta-button:hover {
+            background-color: #f4a460;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            background: #eef2f3;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Coastal Breeze</h1>
+        <p>Temukan ketenangan di setiap deburan ombak</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="pages/biodata.html">Biodata</a>
+        <a href="pages/gallery.html">Gallery</a>
+        <a href="pages/video.html">Video</a>
+    </nav>
+
+    <div class="container">
+        <h2>Selamat Datang</h2>
+        <p>Halo! Website ini dirancang untuk memenuhi tugas kuliah dengan tema pantai yang menenangkan. Silakan jelajahi menu navigasi di atas untuk melihat profil saya, galeri foto pantai, dan koleksi video sinematik.</p>
+        <a href="pages/biodata.html" class="cta-button">Lihat Profil Saya</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Coastal Project | Dibuat dengan cinta untuk tugas kuliah
+    </footer>
+
+</body>
+</html>
