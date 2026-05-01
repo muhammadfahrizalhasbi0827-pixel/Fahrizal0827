@@ -1,27 +1,248 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
- < card {
-     width 190px; height: 254
-     background: black
-     border: ipx solid #ccc;
-     position: absolute;
-     transition: 35 ease-in-out;
-     cursor: pointer; display: flex;
-     align-items: center;
-     justify-content: center;
-     border-radius: 20px;
-     box-shadow: 0pc 0px 30px -10px rgba(0,0,0,0.3);
-     }
-<head>
-<body>
-<div>
-<div class="main">
-    <div class="card" id=:c1:>Project A</div>
-    <div class="card" id=:c2:>Project B</div>
-    <div class="card" id=:c3:>Project C</div>
-    <div class="card" id=:c4:>Project D</div>
-<div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Carousel Keren</title>
+    <style>
+        /* Mengatur gaya dasar */
+        :root {
+            --primary-color: #6c5ce7;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Container utama carousel */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Area scroll kartu */
+        .carousel {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 30px 10px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            /* Menyembunyikan scrollbar bawaan */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        /* Desain Kartu */
+        .card {
+            flex: 0 0 320px; /* Lebar kartu tetap */
+            height: 420px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            scroll-snap-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Efek saat kartu disorot (hover) */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.15);
+        }
+
+        /* Gambar di dalam kartu */
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #dfe6e9;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Konten teks di dalam kartu */
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 10px 0;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+
+        /* Tombol di dalam kartu */
+        .card-btn {
+            align-self: flex-start;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .card-btn:hover {
+            background-color: #5a4bcf;
+        }
+
+        /* Tombol Navigasi Kiri/Kanan */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            color: var(--text-main);
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn { left: -20px; }
+        .next-btn { right: -20px; }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            .prev-btn, .next-btn {
+                display: none; /* Sembunyikan tombol di HP, gunakan swipe */
+            }
+            .card {
+                flex: 0 0 85%; /* Kartu mengambil 85% lebar layar di HP */
+            }
+        }
+    </style>
+</head>
 <body>
-<html>
+
+    <div class="carousel-wrapper">
+        <!-- Tombol Kiri -->
+        <button class="nav-btn prev-btn" id="slideLeft">❮</button>
+
+        <!-- Area Carousel -->
+        <div class="carousel" id="carousel">
+            
+            <!-- Kartu 1 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1506744626753-eda8151a747b?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Pemandangan Alam</h3>
+                    <p class="card-desc">Jelajahi keindahan alam yang belum pernah tersentuh sebelumnya dengan panduan eksklusif kami.</p>
+                    <a href="#" class="card-btn">Jelajahi</a>
+                </div>
+            </div>
+
+            <!-- Kartu 2 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Danau Pegunungan</h3>
+                    <p class="card-desc">Nikmati ketenangan danau pegunungan yang jernih dengan udara pagi yang menyegarkan.</p>
+                    <a href="#" class="card-btn">Jelajahi</a>
+                </div>
+            </div>
+
+            <!-- Kartu 3 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Hutan Tropis</h3>
+                    <p class="card-desc">Petualangan seru menembus lebatnya hutan tropis yang penuh dengan flora dan fauna unik.</p>
+                    <a href="#" class="card-btn">Jelajahi</a>
+                </div>
+            </div>
+
+            <!-- Kartu 4 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Lembah Hijau</h3>
+                    <p class="card-desc">Pemandangan lembah hijau yang membentang luas, cocok untuk melepas penat dari perkotaan.</p>
+                    <a href="#" class="card-btn">Jelajahi</a>
+                </div>
+            </div>
+
+            <!-- Kartu 5 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Pantai Tersembunyi</h3>
+                    <p class="card-desc">Temukan pantai dengan pasir putih dan air biru jernih yang jauh dari keramaian.</p>
+                    <a href="#" class="card-btn">Jelajahi</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tombol Kanan -->
+        <button class="nav-btn next-btn" id="slideRight">❯</button>
+    </div>
+
+    <!-- Script untuk Tombol Navigasi -->
+    <script>
+        const carousel = document.getElementById('carousel');
+        const slideLeft = document.getElementById('slideLeft');
+        const slideRight = document.getElementById('slideRight');
+
+        // Menentukan seberapa jauh scroll setiap kali tombol ditekan
+        // 344px = lebar kartu (320px) + gap (24px)
+        const scrollAmount = 344; 
+
+        slideLeft.addEventListener('click', () => {
+            carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        slideRight.addEventListener('click', () => {
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
