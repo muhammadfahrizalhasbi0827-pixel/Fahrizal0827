@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Carousel Modern</title>
+    <style>
+        /* --- CSS INTERNAL --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .container h2 {
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            font-size: 28px;
+            padding-left: 10px;
+            border-left: 5px solid #007bff;
+        }
+
+        /* Area Scroll Carousel */
+        .carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory; /* Membuat kartu 'menempel' saat digeser */
+            padding: 10px;
+            scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+            -ms-overflow-style: none; /* Sembunyikan scrollbar di IE/Edge */
+        }
+
+        /* Sembunyikan scrollbar di Chrome/Safari */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Styling Kartu */
+        .card {
+            flex: 0 0 300px; /* Lebar tetap setiap kartu */
+            background-color: #fff;
+            border-radius: 15px;
+            scroll-snap-align: center; /* Kartu berhenti tepat di tengah */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body .category {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-body h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Indikator Geser (Opsional untuk UX) */
+        .hint {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 600px) {
+            .card {
+                flex: 0 0 85%; /* Kartu lebih lebar di mobile agar jelas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Petualangan Baru</h2>
+    
+    <div class="carousel">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Pantai">
+            <div class="card-body">
+                <span class="category">Alam</span>
+                <h3>Pantai Pasir Putih</h3>
+                <p>Temukan ketenangan di pesisir tersembunyi dengan air kristal yang jernih.</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Gunung">
+            <div class="card-body">
+                <span class="category">Petualangan</span>
+                <h3>Puncak Kabut</h3>
+                <p>Uji nyali Anda mendaki puncak tertinggi dengan pemandangan awan yang indah.</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=500" alt="Kota">
+            <div class="card-body">
+                <span class="category">Urban</span>
+                <h3>Cahaya Kota</h3>
+                <p>Jelajahi gemerlap kehidupan malam dan arsitektur modern yang memukau.</p>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=500" alt="Hutan">
+            <div class="card-body">
+                <span class="category">Eksplorasi</span>
+                <h3>Hutan Hujan</h3>
+                <p>Mendengar simfoni alam di balik lebatnya pepohonan hijau yang asri.</p>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500" alt="Salju">
+            <div class="card-body">
+                <span class="category">Musim Dingin</span>
+                <h3>Lembah Salju</h3>
+                <p>Rasakan keajaiban musim dingin di resor ski terbaik dunia.</p>
+            </div>
+        </div>
+    </div>
+
+    <p class="hint">← Geser untuk melihat lebih banyak →</p>
+</div>
+
+</body>
+</html>
