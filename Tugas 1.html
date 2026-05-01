@@ -3,203 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Biodata Saya</title>
+    <title>Biodata Interaktif</title>
     <style>
-        /* CSS DIMULAI DI SINI */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
             background-color: #f0f2f5;
             color: #333;
+            line-height: 1.6;
+            padding: 20px;
         }
 
-        /* Navigasi */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #2d3436;
-            padding: 15px 0;
-            z-index: 1000;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #0984e3;
-        }
-
-        /* Container Umum */
-        section {
-            min-height: 100vh;
-            padding: 100px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
+        .main-container {
             max-width: 900px;
-            width: 100%;
-            background: white;
-            padding: 40px;
+            margin: 0 auto;
+        }
+
+        /* Styling Judul/Section */
+        .section {
+            background: #fff;
+            margin-bottom: 30px;
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         h2 {
-            margin-bottom: 30px;
-            color: #2d3436;
-            position: relative;
-            display: inline-block;
+            border-left: 5px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-transform: uppercase;
+            font-size: 1.5rem;
         }
 
-        h2::after {
-            content: '';
-            width: 50%;
-            height: 3px;
-            background: #0984e3;
-            position: absolute;
-            bottom: -5px;
-            left: 25%;
+        /* --- BIODATA --- */
+        .profile-flex {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
-        /* Gaya Biodata */
         .profile-img {
-            width: 160px;
-            height: 160px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #0984e3;
-            margin-bottom: 20px;
+            border: 5px solid #007bff;
         }
 
-        .bio-text {
-            text-align: left;
-            margin-top: 20px;
-            display: inline-block;
+        .bio-info table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        /* Gaya Gallery */
+        .bio-info td {
+            padding: 8px 0;
+        }
+
+        .label { font-weight: bold; width: 120px; }
+
+        /* --- GALLERY --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 20px;
         }
 
         .gallery-grid img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .gallery-grid img:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
 
-        /* Gaya Video */
-        .video-box {
+        /* --- VIDEO --- */
+        .video-container {
             width: 100%;
-            max-width: 700px;
-            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
         }
 
         video {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block;
         }
 
-        /* Footer Sederhana */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2d3436;
-            color: white;
-            font-size: 14px;
+        /* Responsive */
+        @media (max-width: 600px) {
+            .profile-flex { justify-content: center; text-align: center; }
+            .bio-info td { display: block; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Menu Navigasi -->
-    <nav>
-        <a href="#biodata">Biodata</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#video">Video</a>
-    </nav>
-
-    <!-- Bagian 1: Biodata -->
-    <section id="biodata">
-        <div class="container">
-            <h2>Biodata Diri</h2><br>
-            <!-- Ganti src dengan link foto kamu -->
-            <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-img">
-            <div class="bio-text">
-                <p><strong>Nama:</strong> Nama Lengkap Anda</p>
-                <p><strong>Pekerjaan:</strong> Pelajar / Programmer</p>
-                <p><strong>Alamat:</strong> Jakarta, Indonesia</p>
-                <p><strong>Motto:</strong> "Belajar hari ini untuk masa depan yang lebih baik."</p>
+    <div class="main-container">
+        
+        <!-- BAGIAN 1: BIODATA -->
+        <div class="section">
+            <h2>Profil Biodata</h2>
+            <div class="profile-flex">
+                <!-- Ganti 'foto-profil.jpg' dengan nama file fotomu -->
+                <img src="foto-profil.jpg" alt="Foto Profil" class="profile-img">
+                <div class="bio-info">
+                    <table>
+                        <tr>
+                            <td class="label">Nama</td>
+                            <td>: Gemini AI</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Pekerjaan</td>
+                            <td>: AI Assistant</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Keahlian</td>
+                            <td>: Coding, Menulis, Analisis</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Lokasi</td>
+                            <td>: Cloud Server</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Bagian 2: Gallery -->
-    <section id="gallery" style="background-color: #dfe6e9;">
-        <div class="container">
+        <!-- BAGIAN 2: GALLERY -->
+        <div class="section">
             <h2>Gallery Foto</h2>
             <div class="gallery-grid">
-                <!-- Ganti src dengan foto koleksi kamu -->
-                <img src="https://via.placeholder.com/300" alt="Foto 1">
-                <img src="https://via.placeholder.com/300" alt="Foto 2">
-                <img src="https://via.placeholder.com/300" alt="Foto 3">
-                <img src="https://via.placeholder.com/300" alt="Foto 4">
+                <!-- Ganti src dengan nama file gambar di foldermu -->
+                <img src="gambar1.jpg" alt="Gallery 1">
+                <img src="gambar2.jpg" alt="Gallery 2">
+                <img src="gambar3.jpg" alt="Gallery 3">
+                <img src="gambar4.jpg" alt="Gallery 4">
             </div>
         </div>
-    </section>
 
-    <!-- Bagian 3: Video -->
-    <section id="video">
-        <div class="container">
-            <h2>Video Dokumentasi</h2>
-            <div class="video-box">
-                <!-- Ganti src dengan file video kamu di folder assets -->
+        <!-- BAGIAN 3: VIDEO -->
+        <div class="section">
+            <h2>Video Kenangan</h2>
+            <div class="video-container">
+                <!-- Ganti 'video-saya.mp4' dengan nama file videomu -->
                 <video controls>
-                    <source src="video-anda.mp4" type="video/mp4">
-                    Browser anda tidak mendukung tag video.
+                    <source src="video-saya.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
                 </video>
             </div>
-            <p style="margin-top: 15px; color: #636e72;">Ini adalah video perkenalan singkat saya.</p>
         </div>
-    </section>
 
-    <footer>
-        &copy; 2024 Website Biodata Saya.
-    </footer>
+    </div>
 
 </body>
 </html>
