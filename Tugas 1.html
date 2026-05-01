@@ -3,230 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Digital - 4 Folder</title>
+    <title>Website Biodata & Galeri</title>
     <style>
-        /* --- CSS STYLING --- */
-        :root {
-            --primary: #2563eb;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #1e293b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        h1 { margin-bottom: 30px; color: var(--primary); }
-
-        /* Container Folder */
-        .folder-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 40px;
-        }
-
-        .folder {
-            background: var(--card);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        .folder:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            background: #eff6ff;
-        }
-
-        .folder i {
-            font-size: 40px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        /* Konten Area */
-        .content-section {
-            display: none; /* Sembunyikan semua konten di awal */
-            width: 100%;
-            max-width: 800px;
-            background: var(--card);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* Menampilkan konten yang aktif */
-        .content-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Styling Biodata */
-        .bio-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .bio-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .bio-table td:first-child { font-weight: bold; width: 30%; }
-        
-        /* Styling Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .gallery-item {
-            width: 100%;
-            height: 150px;
-            background: #cbd5e1;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            overflow: hidden;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Styling Video */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
-        }
-        .video-container iframe, .video-container video {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-        }
-
-        .btn-back {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .btn-nav {
-            display: block;
-            margin-top: 25px;
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; color: #333; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 3px solid #333; }
+        .gallery-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .gallery-container img { width: 100%; border-radius: 5px; transition: transform 0.3s; }
+        .gallery-container img:hover { transform: scale(1.05); }
+        video { width: 100%; max-width: 600px; border-radius: 8px; }
     </style>
 </head>
 <body>
 
-    <h1>File Explorer Saya</h1>
+    <!-- Bagian Judul Utama -->
+    <header style="text-align: center; margin-bottom: 30px;">
+        <h1>Selamat Datang di Portofolio Saya</h1>
+    </header>
 
-    <!-- GRID FOLDER -->
-    <div class="folder-grid">
-        <div class="folder" onclick="showContent('biodata')">
-            <i>👤</i>
-            <p>Biodata</p>
-        </div>
-        <div class="folder" onclick="showContent('gallery')">
-            <i>🖼️</i>
-            <p>Gallery</p>
-        </div>
-        <div class="folder" onclick="showContent('video')">
-            <i>🎥</i>
-            <p>Video</p>
-        </div>
-        <div class="folder" onclick="location.reload()">
-            <i>🔄</i>
-            <p>Reset</p>
-        </div>
-    </div>
+    <!-- Bagian Biodata -->
+    <section id="biodata">
+        <h2>Biodata Diri</h2>
+        <img src="foto-profil.jpg" alt="Foto Profil" class="profile-img">
+        <ul>
+            <li><strong>Nama:</strong> Nama Lengkap Anda</li>
+            <li><strong>Tempat, Tanggal Lahir:</strong> Kota, DD-MM-YYYY</li>
+            <li><strong>Pekerjaan:</strong> Web Developer / Mahasiswa</li>
+            <li><strong>Hobi:</strong> Coding, Musik, Traveling</li>
+        </ul>
+        <p>Halo! Saya adalah seorang antusias teknologi yang senang belajar hal-hal baru di dunia digital.</p>
+    </section>
 
-    <!-- KONTEN BIODATA -->
-    <div id="biodata" class="content-section">
-        <h2>📂 Folder: Biodata Diri</h2>
-        <hr style="margin: 20px 0;">
-        <table class="bio-table">
-            <tr><td>Nama</td><td>: Budi Santoso</td></tr>
-            <tr><td>Pekerjaan</td><td>: Web Developer</td></tr>
-            <tr><td>Email</td><td>: budi@example.com</td></tr>
-            <tr><td>Hobi</td><td>: Coding & Fotografi</td></tr>
-        </table>
-    </div>
-
-    <!-- KONTEN GALLERY -->
-    <div id="gallery" class="content-section">
-        <h2>📂 Folder: Gallery Foto</h2>
-        <hr style="margin: 20px 0;">
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://picsum.photos/400/300?random=1" alt="Foto 1"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/300?random=2" alt="Foto 2"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/300?random=3" alt="Foto 3"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/300?random=4" alt="Foto 4"></div>
+    <!-- Bagian Gallery -->
+    <section id="gallery">
+        <h2>Gallery Foto</h2>
+        <div class="gallery-container">
+            <img src="gambar1.jpg" alt="Koleksi 1">
+            <img src="gambar2.jpg" alt="Koleksi 2">
+            <img src="gambar3.jpg" alt="Koleksi 3">
+            <!-- Tambahkan lebih banyak img jika perlu -->
         </div>
-    </div>
+    </section>
 
-    <!-- KONTEN VIDEO -->
-    <div id="video" class="content-section">
-        <h2>📂 Folder: Koleksi Video</h2>
-        <hr style="margin: 20px 0;">
-        <div class="video-container">
-            <!-- Ganti ID video YouTube di bawah ini jika ingin mengganti videonya -->
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <p style="margin-top: 15px; color: #666;">Deskripsi: Video presentasi proyek utama tahun 2026.</p>
-    </div>
-<div>
-    <a href="index.html" class="btn-nav">Kembali ke Beranda</a>
-</div>
-    <script>
-        function showContent(id) {
-            // Sembunyikan semua section dulu
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => section.classList.remove('active'));
+    <!-- Bagian Video -->
+    <section id="video">
+        <h2>Koleksi Video</h2>
+        <p>Berikut adalah video dokumentasi atau karya saya:</p>
+        <video controls>
+            <source src="video-saya.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+    </section>
 
-            // Tampilkan section yang dipilih
-            const target = document.getElementById(id);
-            target.classList.add('active');
-            
-            // Scroll otomatis ke konten
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+    <footer style="text-align: center; margin-top: 20px; color: #777;">
+        <p>&copy; 2024 Dibuat dengan Kode</p>
+    </footer>
 
 </body>
 </html>
