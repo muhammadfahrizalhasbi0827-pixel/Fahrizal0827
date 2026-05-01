@@ -1,528 +1,665 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profil Saya</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Saya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --cream: #f5f0e8;
-      --warm: #e8ddd0;
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --charcoal: #1e1a16;
-      --brown: #4a3728;
-      --muted: #7a6a5a;
-      --white: #fdfaf5;
-    }
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --brown: #6B4F3A;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --sage: #7A8C7E;
+    --white: #FDFBF7;
+    --text-muted: #6B6459;
+    --border: rgba(106, 79, 58, 0.15);
+  }
 
-    html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--charcoal);
-      overflow-x: hidden;
-    }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(245,240,232,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.25);
-    }
-    nav .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; color: var(--gold);
-      letter-spacing: 0.05em;
-    }
-    nav ul { list-style: none; display: flex; gap: 2.5rem; }
-    nav ul a {
-      text-decoration: none; color: var(--brown);
-      font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 500; position: relative; padding-bottom: 3px;
-      transition: color 0.3s;
-    }
-    nav ul a::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: var(--gold);
-      transform: scaleX(0); transition: transform 0.3s;
-    }
-    nav ul a:hover { color: var(--gold); }
-    nav ul a:hover::after { transform: scaleX(1); }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
 
-    /* ── HERO / BIODATA ── */
-    #biodata {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      padding-top: 80px;
-      position: relative; overflow: hidden;
-    }
-    #biodata::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.12) 0%, transparent 65%);
-      pointer-events: none;
-    }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--brown);
+    letter-spacing: 0.05em;
+  }
 
-    .bio-visual {
-      display: flex; align-items: center; justify-content: center;
-      padding: 4rem 2rem 4rem 4rem;
-      position: relative;
-    }
-    .bio-photo-frame {
-      position: relative; width: 340px; height: 420px;
-    }
-    .bio-photo-bg {
-      position: absolute; top: 20px; left: 20px; right: -20px; bottom: -20px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-      border-radius: 4px;
-    }
-    .bio-photo {
-      position: relative; z-index: 1;
-      width: 100%; height: 100%;
-      background: linear-gradient(160deg, #d9cfc4 0%, #b8a99a 100%);
-      border-radius: 4px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      border: 3px solid var(--white);
-      box-shadow: 0 20px 60px rgba(30,26,22,0.2);
-    }
-    .bio-photo svg { width: 140px; height: 140px; opacity: 0.5; }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
 
-    .photo-badge {
-      position: absolute; bottom: -12px; right: -30px; z-index: 2;
-      background: var(--charcoal); color: var(--gold);
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: 0.85rem; padding: 0.6rem 1.2rem;
-      border-radius: 2px; white-space: nowrap;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
 
-    .bio-content {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 4rem 4rem 4rem 2rem;
-    }
-    .bio-tag {
-      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; margin-bottom: 1rem;
-    }
-    .bio-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      line-height: 1.15; color: var(--charcoal); margin-bottom: 0.5rem;
-    }
-    .bio-name em { color: var(--gold); font-style: italic; }
-    .bio-subtitle {
-      font-size: 1rem; color: var(--muted); margin-bottom: 2.5rem;
-      font-weight: 300; letter-spacing: 0.03em;
-    }
+  .nav-links a:hover { color: var(--brown); }
 
-    .bio-divider {
-      width: 60px; height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin-bottom: 2.5rem;
-    }
+  /* HERO / BIODATA */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
 
-    .bio-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
-      margin-bottom: 2.5rem;
-    }
-    .bio-item {}
-    .bio-item .label {
-      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em;
-      color: var(--gold); font-weight: 500; margin-bottom: 0.3rem;
-    }
-    .bio-item .value {
-      font-size: 0.92rem; color: var(--charcoal); font-weight: 400;
-    }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+  }
 
-    .bio-about {
-      font-size: 0.9rem; line-height: 1.8;
-      color: var(--muted); border-left: 2px solid var(--gold);
-      padding-left: 1.2rem; margin-bottom: 2rem;
-    }
+  .hero-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
 
-    .btn-primary {
-      display: inline-block; padding: 0.85rem 2.2rem;
-      background: var(--charcoal); color: var(--gold);
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      text-decoration: none; font-weight: 500;
-      border-radius: 2px; transition: all 0.3s;
-      border: 1px solid var(--charcoal);
-    }
-    .btn-primary:hover {
-      background: var(--gold); color: var(--charcoal);
-      border-color: var(--gold);
-    }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
 
-    /* ── SECTION SHARED ── */
-    .section-header {
-      text-align: center; padding: 4rem 2rem 2.5rem;
-    }
-    .section-tag {
-      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; display: block; margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      color: var(--charcoal); line-height: 1.2;
-    }
-    .section-line {
-      width: 40px; height: 2px; background: var(--gold);
-      margin: 1.2rem auto 0;
-    }
+  .hero-name em {
+    color: var(--brown);
+    font-style: italic;
+  }
 
-    /* ── GALLERY ── */
-    #gallery { background: var(--white); padding-bottom: 5rem; }
+  .hero-role {
+    font-size: 1rem;
+    color: var(--sage);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 16px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .gallery-item {
-      position: relative; overflow: hidden;
-      border-radius: 4px; cursor: pointer;
-      background: var(--warm);
-    }
-    .gallery-item:nth-child(1) { grid-column: span 2; }
-    .gallery-item:nth-child(5) { grid-column: span 2; }
+  .bio-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2.5rem;
+  }
 
-    .gallery-thumb {
-      width: 100%; aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #d9cfc4 0%, #b8a99a 100%);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-    .gallery-item:nth-child(1) .gallery-thumb { aspect-ratio: 16/9; }
-    .gallery-item:nth-child(5) .gallery-thumb { aspect-ratio: 16/9; }
-    .gallery-item:hover .gallery-thumb { transform: scale(1.05); }
+  .bio-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border);
+  }
 
-    /* colored tints for variety */
-    .gallery-item:nth-child(1) .gallery-thumb { background: linear-gradient(135deg, #c9b99a, #a8956e); }
-    .gallery-item:nth-child(2) .gallery-thumb { background: linear-gradient(135deg, #b5c4b1, #8fa88a); }
-    .gallery-item:nth-child(3) .gallery-thumb { background: linear-gradient(135deg, #c4b5b5, #a88a8a); }
-    .gallery-item:nth-child(4) .gallery-thumb { background: linear-gradient(135deg, #b5bcc4, #8a95a8); }
-    .gallery-item:nth-child(5) .gallery-thumb { background: linear-gradient(135deg, #c4c0b5, #a8a08a); }
-    .gallery-item:nth-child(6) .gallery-thumb { background: linear-gradient(135deg, #c4b5c2, #a88aa6); }
+  .bio-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 90px;
+    flex-shrink: 0;
+  }
 
-    .gallery-thumb svg { width: 48px; height: 48px; opacity: 0.35; color: var(--brown); }
+  .bio-value {
+    font-size: 0.92rem;
+    color: var(--dark);
+    font-weight: 300;
+  }
 
-    .gallery-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(30,26,22,0.75) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.4s; display: flex;
-      align-items: flex-end; padding: 1.2rem;
-    }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-caption {
-      color: var(--cream); font-size: 0.82rem;
-      font-family: 'Playfair Display', serif; font-style: italic;
-    }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2rem;
+    background: var(--brown);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    width: fit-content;
+  }
 
-    /* ── VIDEO ── */
-    #video { background: var(--charcoal); padding-bottom: 5rem; }
-    #video .section-tag { color: var(--gold-light); }
-    #video .section-title { color: var(--cream); }
-    #video .section-line { background: var(--gold); }
+  .hero-cta:hover { background: var(--dark); transform: translateY(-2px); }
 
-    .video-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 24px; max-width: 960px; margin: 0 auto; padding: 0 2rem;
-    }
-    .video-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 6px; overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .video-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--brown);
+  }
 
-    .video-thumb {
-      position: relative; aspect-ratio: 16/9;
-      background: linear-gradient(135deg, #2e2820, #1a1510);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; overflow: hidden;
-    }
-    .video-thumb::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 70%);
-    }
-    .play-btn {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: rgba(201,168,76,0.9);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.3s, background 0.3s;
-      position: relative; z-index: 1;
-    }
-    .video-card:hover .play-btn { transform: scale(1.1); background: var(--gold); }
-    .play-btn svg { width: 22px; height: 22px; color: var(--charcoal); margin-left: 3px; }
+  .hero-img-wrap {
+    position: absolute;
+    inset: 0;
+  }
 
-    .video-duration {
-      position: absolute; bottom: 10px; right: 12px;
-      background: rgba(0,0,0,0.7); color: var(--gold-light);
-      font-size: 0.72rem; padding: 2px 8px; border-radius: 2px;
-      letter-spacing: 0.08em;
-    }
+  .hero-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    mix-blend-mode: multiply;
+  }
 
-    .video-info { padding: 1.2rem 1.4rem 1.4rem; }
-    .video-category {
-      font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; margin-bottom: 0.5rem; display: block;
-    }
-    .video-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; color: var(--cream);
-      line-height: 1.35; margin-bottom: 0.5rem;
-    }
-    .video-desc {
-      font-size: 0.8rem; color: rgba(245,240,232,0.5);
-      line-height: 1.6;
-    }
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--brown) 0%, #3D2B1F 100%);
+  }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--charcoal);
-      border-top: 1px solid rgba(201,168,76,0.2);
-      text-align: center; padding: 2rem;
-    }
-    footer p { font-size: 0.78rem; color: var(--muted); }
-    footer span { color: var(--gold); }
+  .avatar-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.25);
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .bio-tag, .bio-name, .bio-subtitle, .bio-divider,
-    .bio-grid, .bio-about, .btn-primary,
-    .bio-photo-frame {
-      animation: fadeUp 0.7s ease both;
-    }
-    .bio-photo-frame { animation-delay: 0.05s; }
-    .bio-tag         { animation-delay: 0.1s; }
-    .bio-name        { animation-delay: 0.2s; }
-    .bio-subtitle    { animation-delay: 0.3s; }
-    .bio-divider     { animation-delay: 0.35s; }
-    .bio-grid        { animation-delay: 0.4s; }
-    .bio-about       { animation-delay: 0.45s; }
-    .btn-primary     { animation-delay: 0.5s; }
+  .avatar-initial {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+  }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      nav ul { gap: 1.2rem; }
-      #biodata { grid-template-columns: 1fr; }
-      .bio-visual { padding: 2rem; }
-      .bio-photo-frame { width: 260px; height: 320px; }
-      .bio-content { padding: 2rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item:nth-child(1),
-      .gallery-item:nth-child(5) { grid-column: span 2; }
-      .video-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  .hero-overlay-text {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    line-height: 1;
+    color: rgba(201,168,76,0.15);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    color: var(--dark);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* GALLERY */
+  .gallery-section { background: var(--white); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--cream);
+  }
+
+  .gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover .gallery-img { transform: scale(1.05); }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(transparent, rgba(26,26,24,0.75));
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .gallery-caption { opacity: 1; }
+
+  .gallery-placeholder {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--cream);
+    border: 1px dashed rgba(106,79,58,0.3);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  .gallery-placeholder .icon { font-size: 1.8rem; opacity: 0.4; }
+
+  .gallery-item:first-child .gallery-placeholder { min-height: 420px; }
+
+  /* VIDEO */
+  .video-section { background: var(--cream); }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .video-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .video-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,26,24,0.08); }
+
+  .video-thumb {
+    position: relative;
+    padding-bottom: 56.25%;
+    background: var(--dark);
+  }
+
+  .video-thumb iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .video-thumb-placeholder:hover { background: var(--brown); }
+
+  .play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .play-icon {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 18px;
+    border-color: transparent transparent transparent var(--gold);
+    margin-left: 4px;
+  }
+
+  .video-info { padding: 1.2rem; }
+
+  .video-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .video-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 3rem 1.5rem; }
+    .hero-right { min-height: 300px; }
+    section { padding: 4rem 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
+    .video-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 1rem; }
+  }
+
+  @media (max-width: 560px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: span 1; }
+    .hero-name { font-size: 2rem; }
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.55s; }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAVIGATION -->
 <nav>
-  <div class="logo">Portfolio</div>
-  <ul>
+  <div class="nav-logo">Profil.</div>
+  <ul class="nav-links">
     <li><a href="#biodata">Biodata</a></li>
     <li><a href="#gallery">Galeri</a></li>
     <li><a href="#video">Video</a></li>
   </ul>
 </nav>
 
-<!-- BIODATA -->
-<section id="biodata">
-  <div class="bio-visual">
-    <div class="bio-photo-frame">
-      <div class="bio-photo-bg"></div>
-      <div class="bio-photo">
-        <!-- Replace src with your photo -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" color="#7a6a5a">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
+<!-- BIODATA / HERO -->
+<section class="hero" id="biodata">
+  <div class="hero-left">
+    <p class="hero-tag">Profil Pribadi</p>
+    <h1 class="hero-name">Budi <em>Santoso</em></h1>
+    <p class="hero-role">Desainer Grafis &amp; Fotografer Freelance</p>
+
+    <div class="bio-table">
+      <div class="bio-row">
+        <span class="bio-label">Nama Lengkap</span>
+        <span class="bio-value">Budi Santoso</span>
       </div>
-      <div class="photo-badge">Foto Saya ✦</div>
+      <div class="bio-row">
+        <span class="bio-label">Tanggal Lahir</span>
+        <span class="bio-value">15 Agustus 1995</span>
+      </div>
+      <div class="bio-row">
+        <span class="bio-label">Tempat Lahir</span>
+        <span class="bio-value">Banjarmasin, Kalimantan Selatan</span>
+      </div>
+      <div class="bio-row">
+        <span class="bio-label">Jenis Kelamin</span>
+        <span class="bio-value">Laki-laki</span>
+      </div>
+      <div class="bio-row">
+        <span class="bio-label">Agama</span>
+        <span class="bio-value">Islam</span>
+      </div>
+      <div class="bio-row">
+        <span class="bio-label">Pekerjaan</span>
+        <span class="bio-value">Desainer Grafis</span>
+      </div>
+      <div class="bio-row">
+        <span class="bio-label">Pendidikan</span>
+        <span class="bio-value">S1 Desain Komunikasi Visual</span>
+      </div>
+      <div class="bio-row">
+        <span class="bio-label">Alamat</span>
+        <span class="bio-value">Jl. Gatot Subroto No. 12, Banjarmasin</span>
+      </div>
     </div>
+
+    <a href="mailto:budi@email.com" class="hero-cta">
+      Hubungi Saya &#8594;
+    </a>
   </div>
 
-  <div class="bio-content">
-    <p class="bio-tag">✦ Profil Pribadi</p>
-    <h1 class="bio-name">Nama <em>Lengkap</em><br>Anda</h1>
-    <p class="bio-subtitle">Desainer · Kreator · Pelajar</p>
-    <div class="bio-divider"></div>
-
-    <div class="bio-grid">
-      <div class="bio-item">
-        <div class="label">Nama Lengkap</div>
-        <div class="value">Nama Anda Di Sini</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Tanggal Lahir</div>
-        <div class="value">1 Januari 2000</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Tempat Lahir</div>
-        <div class="value">Banjarmasin</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Jenis Kelamin</div>
-        <div class="value">Laki-laki / Perempuan</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Agama</div>
-        <div class="value">Islam</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Kewarganegaraan</div>
-        <div class="value">Indonesia</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Pekerjaan</div>
-        <div class="value">Mahasiswa / Profesional</div>
-      </div>
-      <div class="bio-item">
-        <div class="label">Email</div>
-        <div class="value">nama@email.com</div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="hero-img-placeholder">
+        <div class="avatar-circle">
+          <span class="avatar-initial">B</span>
+        </div>
       </div>
     </div>
-
-    <p class="bio-about">
-      Saya adalah seseorang yang bersemangat dalam bidang kreativitas dan teknologi. 
-      Dengan pengalaman di berbagai bidang, saya selalu berusaha memberikan hasil 
-      terbaik dalam setiap proyek yang saya kerjakan.
-    </p>
-
-    <a href="mailto:nama@email.com" class="btn-primary">Hubungi Saya</a>
+    <div class="hero-overlay-text">B.</div>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery">
+<section class="gallery-section" id="gallery">
   <div class="section-header">
-    <span class="section-tag">✦ Kenangan</span>
+    <span class="section-num">02</span>
     <h2 class="section-title">Galeri Foto</h2>
     <div class="section-line"></div>
   </div>
 
   <div class="gallery-grid">
+    <!-- Foto utama (besar) -->
     <div class="gallery-item">
-      <div class="gallery-thumb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="gallery-placeholder">
+        <span class="icon">🖼️</span>
+        <span>Foto Utama</span>
+        <small>Ganti dengan &lt;img src="..."&gt;</small>
       </div>
-      <div class="gallery-overlay"><div class="gallery-caption">Momen Spesial</div></div>
+      <div class="gallery-caption">Foto Unggulan</div>
     </div>
+
+    <!-- Foto kecil 1 -->
     <div class="gallery-item">
-      <div class="gallery-thumb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Foto 2</span>
       </div>
-      <div class="gallery-overlay"><div class="gallery-caption">Perjalanan</div></div>
+      <div class="gallery-caption">Momen Berharga</div>
     </div>
+
+    <!-- Foto kecil 2 -->
     <div class="gallery-item">
-      <div class="gallery-thumb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Foto 3</span>
       </div>
-      <div class="gallery-overlay"><div class="gallery-caption">Petualangan</div></div>
+      <div class="gallery-caption">Kenangan Indah</div>
     </div>
+
+    <!-- Foto kecil 3 -->
     <div class="gallery-item">
-      <div class="gallery-thumb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Foto 4</span>
       </div>
-      <div class="gallery-overlay"><div class="gallery-caption">Bersama Keluarga</div></div>
+      <div class="gallery-caption">Petualangan</div>
     </div>
+
+    <!-- Foto kecil 4 -->
     <div class="gallery-item">
-      <div class="gallery-thumb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Foto 5</span>
       </div>
-      <div class="gallery-overlay"><div class="gallery-caption">Wisuda & Prestasi</div></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-thumb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      </div>
-      <div class="gallery-overlay"><div class="gallery-caption">Koleksi Favorit</div></div>
+      <div class="gallery-caption">Inspirasi</div>
     </div>
   </div>
 </section>
 
 <!-- VIDEO -->
-<section id="video">
+<section class="video-section" id="video">
   <div class="section-header">
-    <span class="section-tag">✦ Rekaman</span>
-    <h2 class="section-title">Video Saya</h2>
+    <span class="section-num">03</span>
+    <h2 class="section-title">Video</h2>
     <div class="section-line"></div>
   </div>
 
   <div class="video-grid">
+    <!-- Video 1 — YouTube embed -->
     <div class="video-card">
       <div class="video-thumb">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </div>
-        <div class="video-duration">03:24</div>
+        <!-- Ganti VIDEO_ID dengan ID YouTube yang sebenarnya -->
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Video Perkenalan"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
       <div class="video-info">
-        <span class="video-category">Vlog</span>
-        <div class="video-title">Hari-hari Bersama Keluarga</div>
-        <div class="video-desc">Momen berharga yang terekam bersama orang-orang tercinta di rumah.</div>
+        <p class="video-tag">Perkenalan</p>
+        <h3 class="video-title">Video Profil Singkat</h3>
+        <p class="video-desc">Kenali saya lebih dekat melalui video perkenalan ini. Cerita singkat tentang perjalanan hidup dan passion saya.</p>
       </div>
     </div>
 
+    <!-- Video 2 — placeholder -->
     <div class="video-card">
       <div class="video-thumb">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <div class="video-thumb-placeholder" onclick="alert('Ganti dengan embed video Anda!')">
+          <div class="play-btn">
+            <div class="play-icon"></div>
+          </div>
+          <span style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Tonton Video</span>
         </div>
-        <div class="video-duration">05:10</div>
       </div>
       <div class="video-info">
-        <span class="video-category">Perjalanan</span>
-        <div class="video-title">Eksplorasi Kota Banjarmasin</div>
-        <div class="video-desc">Menjelajahi keindahan kota seribu sungai dari sudut yang berbeda.</div>
+        <p class="video-tag">Portofolio</p>
+        <h3 class="video-title">Karya Desain Terbaik</h3>
+        <p class="video-desc">Kompilasi karya-karya desain terbaik yang telah saya hasilkan selama berkarir sebagai desainer grafis profesional.</p>
       </div>
     </div>
 
+    <!-- Video 3 -->
     <div class="video-card">
       <div class="video-thumb">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <div class="video-thumb-placeholder" onclick="alert('Ganti dengan embed video Anda!')">
+          <div class="play-btn">
+            <div class="play-icon"></div>
+          </div>
+          <span style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Tonton Video</span>
         </div>
-        <div class="video-duration">02:45</div>
       </div>
       <div class="video-info">
-        <span class="video-category">Hobi</span>
-        <div class="video-title">Aktivitas & Kreativitas</div>
-        <div class="video-desc">Berbagi passion dan kegiatan yang mengisi hari-hari saya.</div>
+        <p class="video-tag">Hobi</p>
+        <h3 class="video-title">Fotografi Alam Liar</h3>
+        <p class="video-desc">Dokumentasi perjalanan fotografi saya menjelajahi keindahan alam Kalimantan yang masih terjaga keasliannya.</p>
       </div>
     </div>
 
+    <!-- Video 4 -->
     <div class="video-card">
       <div class="video-thumb">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <div class="video-thumb-placeholder" onclick="alert('Ganti dengan embed video Anda!')">
+          <div class="play-btn">
+            <div class="play-icon"></div>
+          </div>
+          <span style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;">Tonton Video</span>
         </div>
-        <div class="video-duration">07:30</div>
       </div>
       <div class="video-info">
-        <span class="video-category">Dokumentasi</span>
-        <div class="video-title">Perjalanan Hidup Saya</div>
-        <div class="video-desc">Kilas balik perjalanan, pencapaian, dan kenangan yang membentuk saya.</div>
+        <p class="video-tag">Tutorial</p>
+        <h3 class="video-title">Tips Desain untuk Pemula</h3>
+        <p class="video-desc">Berbagi ilmu dan pengalaman seputar dunia desain grafis untuk membantu para pemula memulai perjalanan kreatif mereka.</p>
       </div>
     </div>
   </div>
@@ -530,7 +667,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 <span>Nama Anda</span> — Dibuat dengan ✦ dan ketulusan</p>
+  <p>Dibuat dengan <span>♥</span> oleh Budi Santoso &nbsp;|&nbsp; Banjarmasin, Kalimantan Selatan</p>
+  <p style="margin-top:0.5rem; font-size:0.7rem; opacity:0.4;">© 2026 Semua Hak Dilindungi</p>
 </footer>
 
 </body>
