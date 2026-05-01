@@ -3,134 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Card Carousel</title>
+    <title>Struktur 4 Folder</title>
     <style>
-        /* CSS Gabungan */
+        /* --- CSS DIMULAI DI SINI --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Membuat 2 kolom */
+            gap: 25px;
+            padding: 20px;
+        }
+
+        /* Responsif: jadi 1 kolom di layar kecil, 4 kolom di layar lebar */
+        @media (min-width: 600px) {
+            .container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .folder {
+            width: 140px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-        }
-
-        /* Header & Text */
-        .hero-section {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .hero-section h1 span {
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-section p {
-            color: #94a3b8;
-            max-width: 500px;
-        }
-
-        /* Carousel Container */
-        .carousel-container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px 0;
-        }
-
-        .carousel {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-        }
-
-        .carousel::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Card Design */
-        .card {
-            flex: 0 0 300px;
-            height: 400px;
-            background: #1e293b;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            scroll-snap-align: center;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-            border-color: #38bdf8;
+        /* Efek Hover */
+        .folder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background-color: #fffdf0; /* Warna krem lembut saat hover */
         }
 
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
         }
 
-        .card:hover img {
-            transform: scale(1.1);
+        .folder p {
+            font-size: 15px;
+            color: #444;
+            font-weight: 600;
+            text-align: center;
         }
 
-        .card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 25px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-        }
-
-        @media (max-width: 600px) {
-            .hero-section h1 { font-size: 2rem; }
-            .card { flex: 0 0 80%; }
-        }
+        /* Warna spesifik untuk ikon agar lebih hidup */
+        .folder:nth-child(1) .icon { color: #FFD700; }
+        .folder:nth-child(2) .icon { color: #42a5f5; }
+        .folder:nth-child(3) .icon { color: #66bb6a; }
+        .folder:nth-child(4) .icon { color: #ef5350; }
+        
+        /* --- CSS SELESAI --- */
     </style>
 </head>
 <body>
 
-    <header class="hero-section">
-        <h1>Jelajahi <span>Keindahan</span> Dunia</h1>
-        <p>Temukan destinasi impianmu melalui petualangan visual yang tak terlupakan.</p>
-    </header>
+    <div class="container">
+        <!-- Folder 1 -->
+        <div class="folder">
+            <span class="icon">📁</span>
+            <p>Proyek A</p>
+        </div>
 
-    <main class="carousel-container">
-        <div class="carousel">
-            <div class="card">
-                <div class="card-content">
-                    <h3>Tugas 1</h3>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>Tugas 2</h3>
-                </div>
-            </div>
-            <div class="card">
-                <img src="
+        <!-- Folder 2 -->
+        <div class="folder">
+            <span class="icon">📁</span>
+            <p>Laporan</p>
+        </div>
+
+        <!-- Folder 3 -->
+        <div class="folder">
+            <span class="icon">📁</span>
+            <p>Arsip</p>
+        </div>
+
+        <!-- Folder 4 -->
+        <div class="folder">
+            <span class="icon">📁</span>
+            <p>Pengaturan</p>
+        </div>
+    </div>
+
+</body>
+</html>
