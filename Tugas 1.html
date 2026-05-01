@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Profile & Portfolio</title>
+    <style>
+        /* Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Hero Header */
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header h1 span {
+            color: #38bdf8;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: #1e293b;
+            color: white;
+            border: 1px solid #334155;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+            border-color: #38bdf8;
+        }
+
+        /* Section Visibility */
+        .section {
+            display: none; /* Sembunyikan semua secara default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block; /* Tampilkan yang aktif */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Biodata Styling */
+        .bio-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border: 1px solid #334155;
+        }
+
+        .bio-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #38bdf8;
+        }
+
+        .bio-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .bio-details td {
+            padding: 8px 0;
+        }
+
+        .label {
+            color: #94a3b8;
+            width: 120px;
+        }
+
+        /* Gallery Styling */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #1e293b;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Video Styling */
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        iframe, video {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .bio-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>My <span>Portfolio</span></h1>
+            <p>Halo! Selamat datang di ruang kreatif saya.</p>
+        </header>
+
+        <!-- Menu Navigasi -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="showSection('biodata', this)">Biodata</button>
+            <button class="tab-btn" onclick="showSection('gallery', this)">Gallery</button>
+            <button class="tab-btn" onclick="showSection('video', this)">Video</button>
+        </nav>
+
+        <!-- Section 1: Biodata -->
+        <section id="biodata" class="section active">
+            <div class="bio-card">
+                <img src="https://via.placeholder.com/150" alt="Foto Profil" class="bio-img">
+                <div class="bio-details">
+                    <table>
+                        <tr><td class="label">Nama</td><td>: Gemini AI</td></tr>
+                        <tr><td class="label">Pekerjaan</td><td>: AI Assistant</td></tr>
+                        <tr><td class="label">Hobi</td><td>: Coding & Membantu Manusia</td></tr>
+                        <tr><td class="label">Alamat</td><td>: Cloud Server, Dunia Maya</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Gallery -->
+        <section id="gallery" class="section">
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=500" alt="Tech"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=500" alt="Code"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=500" alt="Work"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500" alt="Vibe"></div>
+            </div>
+        </section>
+
+        <!-- Section 3: Video -->
+        <section id="video" class="section">
+            <div class="video-container">
+                <!-- Ganti ID video YouTube di bawah ini (setelah embed/) -->
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: #94a3b8;">Cuplikan proyek video terbaru saya.</p>
+        </section>
+    </div>
+
+    <!-- JavaScript untuk berpindah tab -->
+    <script>
+        function showSection(sectionId, btn) {
+            // Sembunyikan semua section
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Hapus status active dari semua tombol
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+
+            // Tampilkan section yang dipilih
+            document.getElementById(sectionId).classList.add('active');
+
+            // Set tombol yang diklik menjadi active
+            btn.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
