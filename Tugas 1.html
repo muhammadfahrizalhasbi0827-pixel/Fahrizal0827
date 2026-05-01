@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata Interaktif</title>
+    <title>Profil Interaktif dengan Foto</title>
     <style>
+        /* --- CSS STYLING --- */
         * {
             margin: 0;
             padding: 0;
@@ -14,159 +15,230 @@
 
         body {
             background-color: #f0f2f5;
-            color: #333;
-            line-height: 1.6;
             padding: 20px;
+            color: #333;
         }
 
         .main-container {
             max-width: 900px;
             margin: 0 auto;
-        }
-
-        /* Styling Judul/Section */
-        .section {
             background: #fff;
-            margin-bottom: 30px;
-            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        h2 {
-            border-left: 5px solid #007bff;
-            padding-left: 15px;
-            margin-bottom: 20px;
-            color: #007bff;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-        }
-
-        /* --- BIODATA --- */
-        .profile-flex {
+        /* Navigasi Tab */
+        .tabs {
             display: flex;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
+            background: #2c3e50;
         }
 
-        .profile-img {
+        .tab-link {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        .tab-link:hover { background: #34495e; }
+        .tab-link.active { background: #3498db; }
+
+        /* Konten Tab */
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* BIODATA STYLE (DENGAN FOTO) */
+        .biodata-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .profile-pic {
             width: 180px;
             height: 180px;
-            border-radius: 50%;
+            border-radius: 50%; /* Membuat foto jadi bulat */
             object-fit: cover;
-            border: 5px solid #007bff;
+            border: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .bio-info table {
-            width: 100%;
-            border-collapse: collapse;
+        .biodata-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 10px;
+            flex: 1;
         }
 
-        .bio-info td {
-            padding: 8px 0;
+        /* FOLDER STYLE */
+        .folder-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
         }
 
-        .label { font-weight: bold; width: 120px; }
+        .folder {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
 
-        /* --- GALLERY --- */
+        .folder:hover {
+            background: #eef7fe;
+            transform: scale(1.05);
+        }
+
+        .folder-icon { font-size: 50px; display: block; }
+
+        /* GALLERY STYLE */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
 
-        .gallery-grid img {
+        .gallery-item {
             width: 100%;
             height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            cursor: pointer;
+            background: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
         }
 
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- VIDEO --- */
-        .video-container {
-            width: 100%;
+        /* VIDEO STYLE */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
             border-radius: 10px;
             overflow: hidden;
             background: #000;
         }
 
-        video {
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            display: block;
+            height: 100%;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .profile-flex { justify-content: center; text-align: center; }
-            .bio-info td { display: block; width: 100%; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        
-        <!-- BAGIAN 1: BIODATA -->
-        <div class="section">
-            <h2>Profil Biodata</h2>
-            <div class="profile-flex">
-                <!-- Ganti 'foto-profil.jpg' dengan nama file fotomu -->
-                <img src="foto-profil.jpg" alt="Foto Profil" class="profile-img">
-                <div class="bio-info">
-                    <table>
-                        <tr>
-                            <td class="label">Nama</td>
-                            <td>: Gemini AI</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Pekerjaan</td>
-                            <td>: AI Assistant</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Keahlian</td>
-                            <td>: Coding, Menulis, Analisis</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Lokasi</td>
-                            <td>: Cloud Server</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- BAGIAN 2: GALLERY -->
-        <div class="section">
-            <h2>Gallery Foto</h2>
-            <div class="gallery-grid">
-                <!-- Ganti src dengan nama file gambar di foldermu -->
-                <img src="gambar1.jpg" alt="Gallery 1">
-                <img src="gambar2.jpg" alt="Gallery 2">
-                <img src="gambar3.jpg" alt="Gallery 3">
-                <img src="gambar4.jpg" alt="Gallery 4">
-            </div>
-        </div>
-
-        <!-- BAGIAN 3: VIDEO -->
-        <div class="section">
-            <h2>Video Kenangan</h2>
-            <div class="video-container">
-                <!-- Ganti 'video-saya.mp4' dengan nama file videomu -->
-                <video controls>
-                    <source src="video-saya.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung tag video.
-                </video>
-            </div>
-        </div>
-
+<div class="main-container">
+    <!-- Tombol Navigasi -->
+    <div class="tabs">
+        <button class="tab-link active" onclick="openTab(event, 'folder')">Folder</button>
+        <button class="tab-link" onclick="openTab(event, 'biodata')">Biodata</button>
+        <button class="tab-link" onclick="openTab(event, 'gallery')">Gallery</button>
+        <button class="tab-link" onclick="openTab(event, 'video')">Video</button>
     </div>
+
+    <!-- Konten Folder -->
+    <div id="folder" class="tab-content active">
+        <h2>Penyimpanan Saya</h2>
+        <hr><br>
+        <div class="folder-container">
+            <div class="folder">
+                <span class="folder-icon">📁</span>
+                <p>Dokumen</p>
+            </div>
+            <div class="folder">
+                <span class="folder-icon">📁</span>
+                <p>Tugas</p>
+            </div>
+            <div class="folder">
+                <span class="folder-icon">📁</span>
+                <p>Unduhan</p>
+            </div>
+            <div class="folder">
+                <span class="folder-icon">📁</span>
+                <p>Lainnya</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konten Biodata (DENGAN FOTO) -->
+    <div id="biodata" class="tab-content">
+        <h2>Biodata Diri</h2>
+        <hr><br>
+        <div class="biodata-wrapper">
+            <!-- GANTI URL DI BAWAH DENGAN FOTO KAMU -->
+            <img src="https://via.placeholder.com/180" alt="Foto Profil" class="profile-pic">
+            
+            <div class="biodata-grid">
+                <strong>Nama:</strong> <span>Budi Santoso</span>
+                <strong>Umur:</strong> <span>22 Tahun</span>
+                <strong>Pekerjaan:</strong> <span>Web Developer</span>
+                <strong>Alamat:</strong> <span>Jakarta, Indonesia</span>
+                <strong>Email:</strong> <span>budi@example.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konten Gallery -->
+    <div id="gallery" class="tab-content">
+        <h2>Galeri Foto</h2>
+        <hr><br>
+        <div class="gallery-grid">
+            <div class="gallery-item">Foto 1</div>
+            <div class="gallery-item">Foto 2</div>
+            <div class="gallery-item">Foto 3</div>
+            <div class="gallery-item">Foto 4</div>
+        </div>
+    </div>
+
+    <!-- Konten Video -->
+    <div id="video" class="tab-content">
+        <h2>Video Pilihan</h2>
+        <hr><br>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
 
 </body>
 </html>
