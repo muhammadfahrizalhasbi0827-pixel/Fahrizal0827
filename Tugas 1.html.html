@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Aku</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --ink: #1a1614;
+      --warm: #c8895a;
+      --muted: #8a7f74;
+      --card: #ffffff;
+      --border: rgba(26,22,20,0.1);
+      --tag-bg: rgba(200,137,90,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(245,240,232,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--warm); }
+
+    /* ── HERO / BIO ── */
+    #bio {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .bio-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 60px 80px 80px;
+    }
+    .bio-label {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--warm); font-weight: 500; margin-bottom: 20px;
+    }
+    .bio-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1.1; font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .bio-name em { font-style: italic; color: var(--warm); }
+    .bio-tagline {
+      font-size: 1.1rem; color: var(--muted);
+      margin-bottom: 32px; font-weight: 300; max-width: 400px;
+    }
+    .bio-desc {
+      font-size: 0.975rem; color: var(--ink); max-width: 420px;
+      margin-bottom: 40px; line-height: 1.85;
+    }
+    .bio-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px; }
+    .tag {
+      padding: 6px 16px; border-radius: 100px;
+      background: var(--tag-bg); border: 1px solid rgba(200,137,90,0.25);
+      font-size: 0.8rem; color: var(--warm); font-weight: 500;
+    }
+    .bio-links { display: flex; gap: 16px; }
+    .btn-primary {
+      padding: 14px 32px; background: var(--ink); color: var(--cream);
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      border-radius: 6px; letter-spacing: 0.04em; transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--warm); transform: translateY(-2px); }
+    .btn-ghost {
+      padding: 14px 32px; border: 1.5px solid var(--border); color: var(--ink);
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      border-radius: 6px; letter-spacing: 0.04em; transition: border-color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--warm); color: var(--warm); transform: translateY(-2px); }
+
+    .bio-right {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #e8ddd0 0%, #d4c4b0 100%);
+    }
+    .bio-img-wrap {
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .bio-avatar {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    }
+    .bio-avatar-placeholder {
+      width: 260px; height: 380px; margin-bottom: 60px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 140px 140px 0 0;
+      border: 2px dashed rgba(200,137,90,0.4);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px; color: var(--warm); font-size: 0.85rem;
+    }
+    .bio-avatar-placeholder svg { width: 48px; height: 48px; opacity: 0.5; }
+    .bio-stats {
+      position: absolute; bottom: 40px; left: 40px;
+      background: white; border-radius: 12px; padding: 20px 28px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      display: flex; gap: 32px;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: var(--ink); line-height: 1;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 80px; }
+    .section-header { display: flex; align-items: baseline; gap: 20px; margin-bottom: 56px; }
+    .section-num {
+      font-family: 'Playfair Display', serif; font-size: 0.9rem;
+      color: var(--warm); font-weight: 400; font-style: italic;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.2;
+    }
+    .section-line {
+      flex: 1; height: 1px; background: var(--border); margin-left: 20px; margin-bottom: 6px;
+    }
+
+    /* ── GALLERY ── */
+    #gallery { background: white; }
+    .gallery-filter {
+      display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 20px; border: 1.5px solid var(--border);
+      background: none; border-radius: 100px; font-size: 0.82rem;
+      color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif;
+      font-weight: 500; letter-spacing: 0.04em; transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--ink); color: var(--cream); border-color: var(--ink);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .gallery-item {
+      position: relative; border-radius: 12px; overflow: hidden;
+      background: var(--cream); cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      aspect-ratio: 4/3;
+    }
+    .gallery-item:nth-child(2) { aspect-ratio: 4/5; grid-row: span 2; }
+    .gallery-item:nth-child(5) { aspect-ratio: 16/9; grid-column: span 2; }
+    .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--muted);
+    }
+    .gallery-placeholder svg { width: 36px; height: 36px; opacity: 0.4; }
+    .gallery-placeholder span { font-size: 0.8rem; opacity: 0.6; }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,22,20,0.85) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption { color: white; }
+    .gallery-caption strong { display: block; font-size: 0.95rem; margin-bottom: 2px; }
+    .gallery-caption span { font-size: 0.78rem; opacity: 0.7; }
+
+    /* Coloured placeholder backgrounds */
+    .gallery-item:nth-child(1) .gallery-placeholder { background: #e8e0d8; }
+    .gallery-item:nth-child(2) .gallery-placeholder { background: #dde5dc; }
+    .gallery-item:nth-child(3) .gallery-placeholder { background: #e0d8e8; }
+    .gallery-item:nth-child(4) .gallery-placeholder { background: #e8ddd8; }
+    .gallery-item:nth-child(5) .gallery-placeholder { background: #d8e3e8; }
+    .gallery-item:nth-child(6) .gallery-placeholder { background: #e8e8d8; }
+
+    /* ── VIDEO ── */
+    #video { background: var(--cream); }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .video-card {
+      background: white; border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .video-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+    .video-card.featured {
+      grid-column: span 2;
+      display: grid; grid-template-columns: 1.4fr 1fr;
+    }
+    .video-thumb {
+      position: relative; aspect-ratio: 16/9; background: #1a1614;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      overflow: hidden;
+    }
+    .video-card.featured .video-thumb { aspect-ratio: auto; min-height: 260px; }
+    .video-thumb-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #2a2018 0%, #1a1614 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-play {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s; position: relative; z-index: 2;
+    }
+    .video-play:hover { background: var(--warm); border-color: var(--warm); transform: scale(1.08); }
+    .video-play svg { width: 24px; height: 24px; fill: white; margin-left: 4px; }
+    .video-duration {
+      position: absolute; bottom: 12px; right: 12px;
+      background: rgba(0,0,0,0.6); color: white;
+      font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; z-index: 2;
+    }
+    .video-category {
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      background: var(--warm); color: white;
+      font-size: 0.7rem; padding: 4px 10px; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;
+    }
+    .video-thumb-pattern {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image: repeating-linear-gradient(
+        45deg, white 0, white 1px, transparent 0, transparent 50%
+      );
+      background-size: 20px 20px;
+    }
+    .video-info { padding: 24px; }
+    .video-card.featured .video-info {
+      display: flex; flex-direction: column; justify-content: center; padding: 36px;
+    }
+    .video-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .video-tag {
+      font-size: 0.72rem; color: var(--warm); font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .video-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+    .video-date { font-size: 0.72rem; color: var(--muted); }
+    .video-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;
+      line-height: 1.35; color: var(--ink);
+    }
+    .video-card.featured .video-title { font-size: 1.5rem; }
+    .video-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+    .video-views {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .video-views svg { width: 15px; height: 15px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 80px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      background: white;
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--ink);
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+    .footer-socials { display: flex; gap: 16px; }
+    .social-link {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none; transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--warm); color: var(--warm); transform: translateY(-2px); }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,8,6,0.9); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { max-width: 90vw; max-height: 90vh; position: relative; }
+    .lightbox-close {
+      position: absolute; top: -44px; right: 0;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+      color: white; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: var(--warm); }
+    .lightbox-img {
+      max-width: 100%; max-height: 80vh; border-radius: 8px;
+      background: #2a2018; min-width: 600px; min-height: 400px;
+      display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+    }
+
+    /* ── SCROLL FADE-IN ── */
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #bio { grid-template-columns: 1fr; }
+      .bio-left { padding: 48px 24px; }
+      .bio-right { min-height: 50vw; }
+      section { padding: 72px 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(2) { grid-row: auto; aspect-ratio: 4/3; }
+      .gallery-item:nth-child(5) { grid-column: auto; aspect-ratio: 4/3; }
+      .video-grid { grid-template-columns: 1fr; }
+      .video-card.featured { grid-column: auto; display: block; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#bio" class="nav-logo">Nama Kamu</a>
+  <ul class="nav-links">
+    <li><a href="#bio">Bio</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#video" style="color:var(--warm)">Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- BIO -->
+<section id="bio">
+  <div class="bio-left">
+    <p class="bio-label">Selamat datang di portfolio saya</p>
+    <h1 class="bio-name">Halo, saya <em>Nama Kamu</em></h1>
+    <p class="bio-tagline">Designer & Developer berbasis di Banjarmasin, Kalimantan Selatan.</p>
+    <p class="bio-desc">
+      Saya seorang kreator digital yang bersemangat membangun pengalaman web yang indah dan fungsional.
+      Dengan latar belakang di desain visual dan pengembangan front-end, saya menghubungkan estetika
+      dengan teknologi untuk menciptakan karya yang berkesan.
+    </p>
+    <div class="bio-tags">
+      <span class="tag">UI/UX Design</span>
+      <span class="tag">Web Development</span>
+      <span class="tag">Photography</span>
+      <span class="tag">Videography</span>
+    </div>
+    <div class="bio-links">
+      <a href="#gallery" class="btn-primary">Lihat Karya</a>
+      <a href="#" class="btn-ghost">Unduh CV</a>
+    </div>
+  </div>
+
+  <div class="bio-right">
+    <div class="bio-img-wrap">
+      <!-- Ganti src dengan foto kamu: <img class="bio-avatar" src="foto.jpg" alt="Foto profil"> -->
+      <div class="bio-avatar-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>Foto Kamu</span>
+      </div>
+    </div>
+    <div class="bio-stats">
+      <div class="stat">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Proyek</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Tahun</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Klien</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Galeri Karya</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="gallery-filter fade-in">
+    <button class="filter-btn active">Semua</button>
+    <button class="filter-btn">Desain</button>
+    <button class="filter-btn">Foto</button>
+    <button class="filter-btn">Proyek Web</button>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item fade-in" onclick="openLightbox('Desain UI Dashboard')">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+        <span>Desain UI Dashboard</span>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          <strong>Dashboard Analytics</strong>
+          <span>UI Design · 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item fade-in" onclick="openLightbox('Portrait Photography')">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="12" r="4"/><path d="M2 12C2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10S2 17.5 2 12z"/>
+        </svg>
+        <span>Portrait Photography</span>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          <strong>Portrait Series</strong>
+          <span>Photography · 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item fade-in" onclick="openLightbox('Branding Design')">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span>Branding Design</span>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          <strong>Brand Identity</strong>
+          <span>Branding · 2023</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item fade-in" onclick="openLightbox('Landscape Photo')">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M3 17l4-8 4 5 3-3 7 6H3z"/><circle cx="17" cy="7" r="2"/>
+        </svg>
+        <span>Landscape Photo</span>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          <strong>Meratus Landscape</strong>
+          <span>Photography · 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item fade-in" onclick="openLightbox('Web Project')">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 8l-2 8"/>
+        </svg>
+        <span>Web Project</span>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          <strong>E-Commerce Platform</strong>
+          <span>Web Dev · 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item fade-in" onclick="openLightbox('Poster Design')">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 12h8M8 17h5"/>
+        </svg>
+        <span>Poster Design</span>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          <strong>Event Poster</strong>
+          <span>Desain · 2023</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Video Pilihan</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="video-grid">
+    <!-- Featured Video -->
+    <div class="video-card featured fade-in">
+      <div class="video-thumb">
+        <div class="video-thumb-bg">
+          <div class="video-thumb-pattern"></div>
+        </div>
+        <div class="video-category">Featured</div>
+        <div class="video-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-duration">12:34</div>
+      </div>
+      <div class="video-info">
+        <div class="video-meta">
+          <span class="video-tag">Tutorial</span>
+          <span class="video-dot"></span>
+          <span class="video-date">April 2024</span>
+        </div>
+        <h3 class="video-title">Cara Membuat Website Portfolio yang Menarik dari Nol</h3>
+        <p class="video-desc">
+          Dalam video ini saya memandu proses lengkap membangun website portfolio profesional — dari riset desain,
+          wireframing, hingga coding dan deploy ke hosting.
+        </p>
+        <div class="video-views">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12C1 12 5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          2.4k penonton
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card fade-in">
+      <div class="video-thumb">
+        <div class="video-thumb-bg">
+          <div class="video-thumb-pattern"></div>
+        </div>
+        <div class="video-category">Vlog</div>
+        <div class="video-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-duration">8:20</div>
+      </div>
+      <div class="video-info">
+        <div class="video-meta">
+          <span class="video-tag">Vlog</span>
+          <span class="video-dot"></span>
+          <span class="video-date">Maret 2024</span>
+        </div>
+        <h3 class="video-title">Satu Hari Menjadi Freelance Designer di Banjarmasin</h3>
+        <p class="video-desc">Behind-the-scene kehidupan sehari-hari bekerja remote sebagai desainer freelance.</p>
+        <div class="video-views">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12C1 12 5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          1.1k penonton
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card fade-in">
+      <div class="video-thumb">
+        <div class="video-thumb-bg">
+          <div class="video-thumb-pattern"></div>
+        </div>
+        <div class="video-category">Review</div>
+        <div class="video-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-duration">5:47</div>
+      </div>
+      <div class="video-info">
+        <div class="video-meta">
+          <span class="video-tag">Review</span>
+          <span class="video-dot"></span>
+          <span class="video-date">Februari 2024</span>
+        </div>
+        <h3 class="video-title">Tool Desain Terbaik untuk Pemula di 2024</h3>
+        <p class="video-desc">Perbandingan Figma, Adobe XD, dan Canva untuk pemula yang baru terjun ke dunia desain.</p>
+        <div class="video-views">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12C1 12 5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          876 penonton
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Nama Kamu</div>
+  <div class="footer-copy">© 2024 — Dibuat dengan ❤ di Banjarmasin</div>
+  <div class="footer-socials">
+    <a href="#" class="social-link" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" class="social-link" title="GitHub">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+      </svg>
+    </a>
+    <a href="#" class="social-link" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img" id="lightbox-img">Gambar tidak tersedia — ganti placeholder dengan foto asli</div>
+  </div>
+</div>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Gallery filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Lightbox
+  function openLightbox(title) {
+    document.getElementById('lightbox-img').textContent = title + ' — Ganti dengan <img src="..."> asli';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.tagName === 'BUTTON') {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+</script>
+</body>
+</html>
