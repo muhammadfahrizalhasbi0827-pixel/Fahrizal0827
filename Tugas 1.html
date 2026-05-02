@@ -81,6 +81,8 @@
     align-items: center;
   }
 
+  .hero-text { }
+
   .hero-eyebrow {
     font-size: 0.75rem;
     font-weight: 500;
@@ -327,21 +329,16 @@
   /* GALLERY */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
   }
 
   .gallery-card {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 4;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
-  }
-
-  .gallery-card:first-child {
-    grid-column: span 2;
-    aspect-ratio: 2 / 1;
   }
 
   .gallery-img-placeholder {
@@ -351,11 +348,20 @@
     align-items: center;
     justify-content: center;
     font-family: 'DM Serif Display', serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     letter-spacing: 0.04em;
     transition: transform 0.4s ease;
   }
 
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-card:hover img,
   .gallery-card:hover .gallery-img-placeholder { transform: scale(1.04); }
 
   .g1 { background: linear-gradient(135deg, #C49A5A, #8B6A3C); color: rgba(255,255,255,0.7); }
@@ -507,8 +513,7 @@
     .photo-frame { width: 240px; height: 290px; }
     .bio-grid { grid-template-columns: 1fr 1fr; }
     .bio-about { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-card:first-child { grid-column: span 2; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .video-grid { grid-template-columns: 1fr; }
     .nav-links { gap: 1rem; }
   }
@@ -528,22 +533,22 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-text">
-    <div class="hero-eyebrow"> Profil Saya</div>
-    <h1 class="hero-name">Muhammad<br><em>SFahrizal Hasbi</em></h1>
+    <div class="hero-eyebrow">Profil Saya</div>
+    <h1 class="hero-name">Muhammad<br><em>Fahrizal Hasbi</em></h1>
     <p class="hero-desc">Mahasiswa Dari Universitas Lambung Mangkurat Fakultas Perikanan dan Ilmu Kelautan Program Studi Sosial Ekonomi Perikanan</p>
-   </div>
+  </div>
   <div class="hero-photo-wrap">
     <div class="photo-frame">
-      <img src="Fotoku.jpg" alt="Foto Profil" style="width:100%;height:100%;object-fit:cover;">
+      <img src="foto-profil.jpg" style="width:100%;height:100%;object-fit:cover;">
     </div>
   </div>
 </div>
 
 <!-- BIODATA -->
-<section id="biodata Saya">
+<section id="biodata">
   <div class="section-header">
     <span class="section-num">01</span>
-    <h2 class="section-title">Biodata</h2>
+    <h2 class="section-title">Biodata Saya</h2>
     <div class="section-line"></div>
   </div>
 
@@ -564,26 +569,25 @@
     </div>
     <div class="bio-item">
       <div class="bio-label">Pendidikan</div>
-      <div class="bio-value">Mahasiswa Sosial Ekonomi Perikanan</div>
+      <div class="bio-value">Mahasiswa Sosial Ekomomi Perikanan</div>
       <div class="bio-sub">Universitas Lambung Mangkurat</div>
     </div>
     <div class="bio-item">
       <div class="bio-label">Email</div>
       <div class="bio-value">Nurmuhammadhasbi0@email.com</div>
-      <div class="bio-sub">Email Yang Aktif</div>
+      <div class="bio-sub"> Email Yang Aktif</div>
     </div>
     <div class="bio-item">
       <div class="bio-label">Agama</div>
       <div class="bio-value">Islam</div>
     </div>
   </div>
-
 </section>
 
 <div class="section-divider"><hr></div>
 
 <!-- GALLERY -->
-<section id="gallery Saya">
+<section id="gallery">
   <div class="section-header">
     <span class="section-num">02</span>
     <h2 class="section-title">Gallery</h2>
@@ -592,27 +596,27 @@
 
   <div class="gallery-grid">
     <div class="gallery-card">
-    <img src="Foto depan.jpeg" alt="Pasar Terapung" style="width:50%;height:50%;object-fit:cover;display:block;">
+      <img src="Foto_belakang.jpeg" alt="Foto 1">
       <div class="gallery-overlay">
-        <span class="gallery-caption">Hutan Hujan Tropis</span>
+        <span class="gallery-caption">Foto 1 — 2024</span>
       </div>
     </div>
     <div class="gallery-card">
-      <div class="gallery-img-placeholder g3">Sungai Martapura</div>
+      <div class="gallery-img-placeholder g2">Foto 2</div>
       <div class="gallery-overlay">
-        <span class="gallery-caption">Sungai Martapura Senja</span>
+        <span class="gallery-caption">Foto 2</span>
       </div>
     </div>
     <div class="gallery-card">
-      <div class="gallery-img-placeholder g4">Mesjid Sultan</div>
+      <div class="gallery-img-placeholder g3">Foto 3</div>
       <div class="gallery-overlay">
-        <span class="gallery-caption">Masjid Sultan Suriansyah</span>
+        <span class="gallery-caption">Foto 3</span>
       </div>
     </div>
     <div class="gallery-card">
-      <div class="gallery-img-placeholder g5">Intan Banjar</div>
+      <div class="gallery-img-placeholder g4">Foto 4</div>
       <div class="gallery-overlay">
-        <span class="gallery-caption">Kerajinan Intan Martapura</span>
+        <span class="gallery-caption">Foto 4</span>
       </div>
     </div>
   </div>
