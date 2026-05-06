@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sajian Data </title>
+<title>Sajian Data</title>
 <style>
   body {
     font-family: Arial, sans-serif;
     background-color: #eef2f3;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
+    margin: 0;
   }
 
   .container {
@@ -20,6 +22,7 @@
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
   }
 
   h1 {
@@ -41,12 +44,35 @@
   a.button:hover {
     background-color: #357ae8;
   }
+
+  /* Navigasi Kembali */
+  .nav-back {
+    margin-top: 20px;
+  }
+
+  .nav-back a {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 2px solid #555;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .nav-back a:hover {
+    background-color: #555;
+    color: #fff;
+  }
 </style>
 </head>
 <body>
   <div class="container">
-    <h1>Sajian Data</h1>
-    <a class="button" href="https://datastudio.google.com/s/oaEfAvxaFTo"target="_blank">Buka Sajian Data<a>
+    <h1>Isi Sajian data</h1>
+    <a class="button" href="https://datastudio.google.com/s/oaEfAvxaFTo" target="_blank">Buka Sajian Data</a>
+  </div>
+  <div class="nav-back">
+    <a href="index.html">Kembali ke Halaman Utama</a>
   </div>
 </body>
 </html>
