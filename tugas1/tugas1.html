@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil — Andi Pratama</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EE;
+    --warm-dark: #1C1A14;
+    --accent: #C8A96A;
+    --accent-light: #EDD9A3;
+    --muted: #7A7568;
+    --border: rgba(28,26,20,0.12);
+    --card-bg: #FFFFFF;
+    --section-bg: #F0EDE4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--warm-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: var(--warm-dark);
+    color: #fff;
+    padding: 72px 40px 64px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--warm-dark);
+    font-weight: 700;
+    border: 3px solid var(--accent);
+    flex-shrink: 0;
+  }
+
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+
+  .tagline {
+    margin-top: 8px;
+    color: var(--accent-light);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .bio-short {
+    margin-top: 20px;
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    max-width: 480px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .tag {
+    padding: 4px 14px;
+    border: 1px solid rgba(200,169,106,0.45);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--accent-light);
+    letter-spacing: 0.5px;
+  }
+
+  .nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav a {
+    display: block;
+    padding: 16px 28px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav a:hover, .nav a.active {
+    color: var(--warm-dark);
+    border-bottom-color: var(--accent);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section { padding: 64px 0; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    color: var(--warm-dark);
+  }
+
+  #biodata { background: var(--cream); }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .bio-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+  }
+
+  .bio-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--warm-dark);
+  }
+
+  .bio-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(28,26,20,0.06);
+    gap: 16px;
+  }
+
+  .bio-row:last-child { border-bottom: none; }
+
+  .bio-key {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .bio-val {
+    font-size: 14px;
+    color: var(--warm-dark);
+    text-align: right;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .skill-pill {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 13px;
+    font-size: 12px;
+    color: var(--warm-dark);
+    font-weight: 500;
+  }
+
+  #gallery { background: var(--section-bg); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    aspect-ratio: 1 / 1;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(28,26,14,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { color: #fff; font-size: 13px; font-weight: 500; }
+  .gallery-overlay small { color: rgba(255,255,255,0.65); font-size: 11px; }
+
+  #video { background: var(--cream); }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .video-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+  }
+
+  .video-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--warm-dark);
+    overflow: hidden;
+  }
+
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+
+  .video-card:hover .video-thumb img { opacity: 0.9; }
+
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(200,169,106,0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .video-card:hover .play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--accent);
+  }
+
+  .play-btn svg { width: 20px; height: 20px; fill: var(--warm-dark); margin-left: 3px; }
+
+  .video-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .video-info { padding: 14px 16px 16px; }
+
+  .video-info h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--warm-dark);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .video-meta { font-size: 12px; color: var(--muted); }
+
+  footer {
+    background: var(--warm-dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 32px;
+    font-size: 13px;
+  }
+
+  footer span { color: var(--accent); }
+
+  @media (max-width: 700px) {
+    .bio-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .video-grid { grid-template-columns: 1fr; }
+    .hero { padding: 48px 24px; gap: 28px; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="avatar">AP</div>
+  <div class="hero-text">
+    <p class="tagline">Portofolio Pribadi</p>
+    <h1>Andi Pratama</h1>
+    <p class="bio-short">Desainer &amp; pengembang web dari Banjarmasin. Menciptakan pengalaman digital yang bermakna dengan memadukan estetika visual dan teknologi modern.</p>
+    <div class="hero-tags">
+      <span class="tag">UI/UX Design</span>
+      <span class="tag">Web Development</span>
+      <span class="tag">Fotografi</span>
+      <span class="tag">Videografi</span>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="#biodata" class="active">Biodata</a>
+  <a href="#gallery">Galeri</a>
+  <a href="#video">Video</a>
+</nav>
+
+<!-- BIODATA -->
+<section id="biodata">
+  <div class="container">
+    <p class="section-label">Tentang Saya</p>
+    <h2 class="section-title">Biodata Lengkap</h2>
+    <div class="bio-grid">
+      <div class="bio-card">
+        <h3>Informasi Pribadi</h3>
+        <div class="bio-row"><span class="bio-key">Nama Lengkap</span><span class="bio-val">Andi Pratama</span></div>
+        <div class="bio-row"><span class="bio-key">Tempat Lahir</span><span class="bio-val">Banjarmasin</span></div>
+        <div class="bio-row"><span class="bio-key">Tanggal Lahir</span><span class="bio-val">15 Maret 1998</span></div>
+        <div class="bio-row"><span class="bio-key">Jenis Kelamin</span><span class="bio-val">Laki-laki</span></div>
+        <div class="bio-row"><span class="bio-key">Agama</span><span class="bio-val">Islam</span></div>
+        <div class="bio-row"><span class="bio-key">Status</span><span class="bio-val">Belum Menikah</span></div>
+        <div class="bio-row"><span class="bio-key">Kewarganegaraan</span><span class="bio-val">Indonesia</span></div>
+      </div>
+
+      <div class="bio-card">
+        <h3>Kontak &amp; Alamat</h3>
+        <div class="bio-row"><span class="bio-key">Email</span><span class="bio-val">andi@email.com</span></div>
+        <div class="bio-row"><span class="bio-key">Telepon</span><span class="bio-val">+62 812-3456-7890</span></div>
+        <div class="bio-row"><span class="bio-key">Kota</span><span class="bio-val">Banjarmasin, Kal-Sel</span></div>
+        <div class="bio-row"><span class="bio-key">Instagram</span><span class="bio-val">@andipratama</span></div>
+        <div class="bio-row"><span class="bio-key">LinkedIn</span><span class="bio-val">linkedin.com/in/andipratama</span></div>
+        <div class="bio-row"><span class="bio-key">Website</span><span class="bio-val">andipratama.id</span></div>
+      </div>
+
+      <div class="bio-card">
+        <h3>Riwayat Pendidikan</h3>
+        <div class="bio-row"><span class="bio-key">S1 Teknik Informatika</span><span class="bio-val">2016 – 2020</span></div>
+        <div class="bio-row"><span class="bio-key">Univ. Lambung Mangkurat</span><span class="bio-val">IPK 3.78</span></div>
+        <div class="bio-row"><span class="bio-key">SMA Negeri 7 Banjarmasin</span><span class="bio-val">2013 – 2016</span></div>
+        <div class="bio-row"><span class="bio-key">SMP Negeri 5 Banjarmasin</span><span class="bio-val">2010 – 2013</span></div>
+        <div class="bio-row"><span class="bio-key">Pengalaman Kerja</span><span class="bio-val">4+ Tahun</span></div>
+      </div>
+
+      <div class="bio-card">
+        <h3>Keahlian &amp; Minat</h3>
+        <div class="bio-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+          <span class="bio-key">Desain</span>
+          <div class="skill-list">
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Adobe XD</span>
+            <span class="skill-pill">Photoshop</span>
+            <span class="skill-pill">Illustrator</span>
+          </div>
+        </div>
+        <div class="bio-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+          <span class="bio-key">Pemrograman</span>
+          <div class="skill-list">
+            <span class="skill-pill">HTML/CSS</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">PHP</span>
+          </div>
+        </div>
+        <div class="bio-row" style="flex-direction:column;align-items:flex-start;gap:8px;border:none">
+          <span class="bio-key">Hobi</span>
+          <div class="skill-list">
+            <span class="skill-pill">Fotografi</span>
+            <span class="skill-pill">Videografi</span>
+            <span class="skill-pill">Traveling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label">Koleksi Foto</p>
+    <h2 class="section-title">Galeri Foto</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/kal1/600/600" alt="Pasar Terapung">
+        <div class="gallery-overlay"><span>Pasar Terapung</span><small>Banjarmasin · 2024</small></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/kal2/600/600" alt="Masjid Sultan Suriansyah">
+        <div class="gallery-overlay"><span>Masjid Sultan Suriansyah</span><small>Banjarmasin · 2023</small></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/kal3/600/600" alt="Sunset Martapura">
+        <div class="gallery-overlay"><span>Sunset Martapura</span><small>Kalimantan Selatan · 2024</small></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/kal4/600/600" alt="Hutan Mangrove">
+        <div class="gallery-overlay"><span>Hutan Mangrove</span><small>Pelaihari · 2023</small></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/kal5/600/600" alt="Batik Sasirangan">
+        <div class="gallery-overlay"><span>Batik Sasirangan</span><small>Banjarmasin · 2024</small></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/kal6/600/600" alt="Loksado">
+        <div class="gallery-overlay"><span>Pegunungan Loksado</span><small>Hulu Sungai Selatan · 2023</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="container">
+    <p class="section-label">Koleksi Video</p>
+    <h2 class="section-title">Galeri Video</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumb">
+          <img src="https://picsum.photos/seed/vid1/640/360" alt="Vlog Pasar Terapung">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="video-duration">4:32</span>
+        </div>
+        <div class="video-info">
+          <h4>Vlog: Pagi Hari di Pasar Terapung</h4>
+          <span class="video-meta">12 Januari 2024 · 2.4K views</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <img src="https://picsum.photos/seed/vid2/640/360" alt="Ekspedisi Loksado">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="video-duration">8:15</span>
+        </div>
+        <div class="video-info">
+          <h4>Ekspedisi Bamboo Rafting Loksado</h4>
+          <span class="video-meta">5 Oktober 2023 · 5.1K views</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <img src="https://picsum.photos/seed/vid3/640/360" alt="Batik Sasirangan">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="video-duration">11:47</span>
+        </div>
+        <div class="video-info">
+          <h4>Proses Membuat Batik Sasirangan Khas Banjar</h4>
+          <span class="video-meta">20 Juli 2023 · 3.8K views</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Dibuat dengan ♥ oleh <span>Andi Pratama</span> · Banjarmasin, Kalimantan Selatan
+</footer>
+
+<script>
+  const links = document.querySelectorAll('.nav a');
+  const secs = document.querySelectorAll('section[id]');
+  function updateNav() {
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+  links.forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  }));
+</script>
+</body>
+</html>
