@@ -176,23 +176,15 @@
     justify-content: center;
   }
 
- .photo-frame {
+  .photo-frame {
     width: 360px;
     height: 440px;
     border-radius: 200px 200px 120px 120px;
-    background: #D4B896;
+    background: linear-gradient(145deg, #D4B896, #C49A5A);
     position: relative;
     overflow: hidden;
     border: 3px solid var(--border);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   }
-
-  /* Penyesuaian Ukuran Foto Profil */
-  .photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ini memastikan foto memenuhi bingkai tanpa distorsi */
-    object-position: center;
 
   .photo-initials {
     position: absolute;
@@ -580,7 +572,7 @@
   </div>
   <div class="hero-photo-wrap">
     <div class="photo-frame">
-     <img src="Fotoku.jpg" alt="Profil Anda" class="photo-img">
+      <img  scr="Fotoku.jpg"=Foto <img>
     </div>
   </div>
 </div>
@@ -637,27 +629,27 @@
 
   <div class="gallery-grid">
     <div class="gallery-card">
-      <img src="Foto depan.jpeg" alt="Foto 1">
+      <img src="Foto_belakang.jpeg" alt="Foto 1">
       <div class="gallery-overlay">
-        <span class="gallery-caption">Foto Depan Kost</span>
+        <span class="gallery-caption">Foto 1 — 2024</span>
       </div>
     </div>
     <div class="gallery-card">
-      <img src="Foto kanan.jpeg" alt="Foto 2">
+      <div class="gallery-img-placeholder g2">Foto 2</div>
       <div class="gallery-overlay">
-        <span class="gallery-caption">Foto Kanan Kost</span>
+        <span class="gallery-caption">Foto 2</span>
       </div>
     </div>
     <div class="gallery-card">
-      <img src="foto kiri.jpeg" alt="Foto 3">
+      <div class="gallery-img-placeholder g3">Foto 3</div>
       <div class="gallery-overlay">
-        <span class="gallery-caption">Foto Kiri Kost</span>
+        <span class="gallery-caption">Foto 3</span>
       </div>
     </div>
     <div class="gallery-card">
-      <img src="Foto belakang.jpeg" alt="Foto 4">
+      <div class="gallery-img-placeholder g4">Foto 4</div>
       <div class="gallery-overlay">
-        <span class="gallery-caption">Foto Belakang Kost</span>
+        <span class="gallery-caption">Foto 4</span>
       </div>
     </div>
   </div>
@@ -676,12 +668,7 @@
   <div class="video-grid">
     <div class="video-card">
       <div class="video-thumb v1">
-        <iframe 
-                src="video.mp4" 
-                title="Suasana Kost" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
+        <div class="play-btn"><div class="play-icon"></div></div>
       </div>
       <div class="video-info">
         <div class="video-cat">Dokumenter</div>
@@ -689,6 +676,34 @@
         <div class="video-meta">
           <span>8:42</span>
           <span>12 Jan 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb v2">
+        <div class="play-btn"><div class="play-icon"></div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-cat">Alam &amp; Lingkungan</div>
+        <div class="video-title">Eksplorasi Mangrove Pesisir Kalimantan</div>
+        <div class="video-meta">
+          <span>5:18</span>
+          <span>3 Feb 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb v3">
+        <div class="play-btn"><div class="play-icon"></div></div>
+      </div>
+      <div class="video-info">
+        <div class="video-cat">Budaya</div>
+        <div class="video-title">Festival Aruh Baharin — Tradisi Dayak</div>
+        <div class="video-meta">
+          <span>11:05</span>
+          <span>20 Mar 2024</span>
         </div>
       </div>
     </div>
