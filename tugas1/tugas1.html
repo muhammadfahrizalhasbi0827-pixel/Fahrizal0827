@@ -176,14 +176,23 @@
     justify-content: center;
   }
 
-  .photo-frame {
+.photo-frame {
     width: 360px;
     height: 440px;
     border-radius: 200px 200px 120px 120px;
-    background: linear-gradient(145deg, #D4B896, #C49A5A);
+    background: #D4B896;
     position: relative;
     overflow: hidden;
     border: 3px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  /* Penyesuaian Ukuran Foto Profil */
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ini memastikan foto memenuhi bingkai tanpa distorsi */
+    object-position: center;
   }
 
   .photo-initials {
