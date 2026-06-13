@@ -144,6 +144,34 @@
       color: #721c24;
     }
 
+    /* Style untuk dropdown selector */
+    .selector-container {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .selector-label {
+      font-weight: 600;
+      color: #3a6b9d;
+    }
+    .custom-select {
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 2px solid #2caabe;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: #333;
+      background-color: white;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .custom-select:focus {
+      border-color: #3d5887;
+    }
+
     @media (max-width: 768px) {
       .dashboard-container iframe {
         height: 400px;
@@ -183,75 +211,41 @@
       <h2>Formulir Input Inventaris Barang</h2>
       <p>Pokdakan (Kelompok Pembudidaya Ikan) adalah kelompok formal yang dibentuk oleh para pembudidaya ikan untuk saling berbagi pengetahuan, mengakses bantuan pemerintah, dan meningkatkan pengelolaannya. Sistem inventaris barang membantu mengelola dan mencatat semua barang milik kelompok dengan lebih terorganisir dan transparan.</p>
       <div class="button-container">
-        <a href="https://forms.gle/dbF1Vun7BNDWixcp8" class="back-button" target="_blank">Input Inventaris Barang</a>
-        <a href="https://docs.google.com/spreadsheets/d/1cSY-WCRF8KInBfxDoiYExICo7IHOIs1B-nOpKTD1JGE/edit?usp=sharing" class="back-button" target="_blank">Lihat Data Inventaris</a>
+        <a href="https://forms.gle/dbF1Vun7BNDWixcp8" class="back-button" target="_blank" rel="noopener">Input Inventaris Barang</a>
+        <a href="https://docs.google.com/spreadsheets/d/1cSY-WCRF8KInBfxDoiYExICo7IHOIs1B-nOpKTD1JGE/edit?usp=sharing" class="back-button" target="_blank" rel="noopener">Lihat Data Inventaris</a>
       </div>
     </div>
 
-    <!-- TAMPILAN BARU: Tabel Daftar Inventaris Barang -->
+    <!-- TAMPILAN BARU: Tabel Daftar Inventaris Barang (Dinamis dari File PDF) -->
     <div class="card">
       <h2>Daftar Inventaris Barang Saat Ini</h2>
-      <p>Berikut adalah ringkasan daftar barang dan peralatan yang dikelola oleh POKDAKAN. Data ini diperbarui secara berkala sesuai dengan catatan inventaris kelompok.</p>
+      <p>Berikut adalah ringkasan daftar barang dan peralatan yang dikelola oleh POKDAKAN sesuai dengan dokumen profil kelompok. Silakan pilih kelompok untuk menampilkan data yang relevan.</p>
       
+      <!-- Dropdown filter data kelompok -->
+      <div class="selector-container">
+        <label for="pokdakan-select" class="selector-label">Pilih Kelompok POKDAKAN:</label>
+        <select id="pokdakan-select" class="custom-select">
+          <option value="banyiur">Sahabat Banyiur (Barito Kuala)</option>
+          <option value="gurami_jaya">Gurami Jaya (Banjarbaru)</option>
+          <option value="mina_sejahtera">Mina Sejahtera (Banyuasin)</option>
+          <option value="gurita">Pokdakan Gurita (Kepulauan Anambas)</option>
+        </select>
+      </div>
+
       <div class="table-responsive">
         <table class="inventory-table">
           <thead>
             <tr>
               <th>No</th>
-              <th>Kode Barang</th>
-              <th>Nama Barang</th>
-              <th>Kategori</th>
+              <th>Nama Aset / Barang</th>
               <th>Jumlah</th>
+              <th>Kepemilikan</th>
+              <th>Nilai Aset / Nominal</th>
               <th>Kondisi</th>
-              <th>Sumber Perolehan</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>INV-001</td>
-              <td>Pompa Air Alkon 3 Inch</td>
-              <td>Peralatan Utama</td>
-              <td>2 Unit</td>
-              <td><span class="status-badge status-baik">Baik</span></td>
-              <td>Bantuan Dinas</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>INV-002</td>
-              <td>Jaring Tangkap / Serok Besar</td>
-              <td>Alat Panen</td>
-              <td>5 Pcs</td>
-              <td><span class="status-badge status-baik">Baik</span></td>
-              <td>Swadaya Kelompok</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>INV-003</td>
-              <td>pH Meter Digital</td>
-              <td>Kualitas Air</td>
-              <td>2 Unit</td>
-              <td><span class="status-badge status-rusak-ringan">Rusak Ringan</span></td>
-              <td>Swadaya Kelompok</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>INV-004</td>
-              <td>Aerator Resun LP-60</td>
-              <td>Peralatan Kolam</td>
-              <td>4 Unit</td>
-              <td><span class="status-badge status-baik">Baik</span></td>
-              <td>Bantuan Dinas</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>INV-005</td>
-              <td>Timbangan Digital 150 kg</td>
-              <td>Alat Panen</td>
-              <td>1 Unit</td>
-              <td><span class="status-badge status-rusak-berat">Rusak Berat</span></td>
-              <td>Swadaya Kelompok</td>
-            </tr>
+          <tbody id="inventory-tbody">
+            <!-- Data akan dimuat secara dinamis oleh JavaScript -->
           </tbody>
         </table>
       </div>
@@ -261,8 +255,8 @@
       <h2>Survei Kepuasan Pengguna</h2>
       <p>Evaluasi layanan adalah proses penilaian sistematis terhadap kinerja, kualitas, efektivitas, dan efisiensi layanan yang diberikan oleh suatu lembaga atau entitas kepada pengguna layanannya.</p>
       <div class="button-container">
-        <a href="https://forms.gle/6CRBGkSWUNv7cypA6" class="back-button" target="_blank">Isi Survei Kepuasan</a>
-        <a href="https://docs.google.com/spreadsheets/d/1I-lprZhxM4nLWE39uv0OIG9O4q5fdigoHmFr7g6Bruk/edit?usp=sharing" class="back-button" target="_blank">Lihat Hasil Survei</a>
+        <a href="https://forms.gle/6CRBGkSWUNv7cypA6" class="back-button" target="_blank" rel="noopener">Isi Survei Kepuasan</a>
+        <a href="https://docs.google.com/spreadsheets/d/1I-lprZhxM4nLWE39uv0OIG9O4q5fdigoHmFr7g6Bruk/edit?usp=sharing" class="back-button" target="_blank" rel="noopener">Lihat Hasil Survei</a>
       </div>
     </div>
 
@@ -270,12 +264,12 @@
       <h2>Dashboard Data Inventaris</h2>
       <p>Visualisasi data inventaris barang kelompok dalam bentuk dashboard interaktif. Dashboard ini menampilkan statistik dan analisis real-time dari data inventaris yang telah diinputkan.</p>
       <div class="button-container" style="margin-bottom: 1.5rem;">
-        <a href="https://datastudio.google.com/embed/reporting/46560b36-afa0-4930-b1ee-262bf5417ad8/page/page_12345" class="back-button" target="_blank">Buka Dashboard Lengkap</a>
+        <a href="https://datastudio.google.com/embed/reporting/46560b36-afa0-4930-b1ee-262bf5417ad8/page/page_12345" class="back-button" target="_blank" rel="noopener">Buka Dashboard Lengkap</a>
       </div>
       <div style="margin-top: 1.5rem; text-align: center;">
         <p style="color: #999; margin-bottom: 1rem; font-size: 0.95rem;">Dashboard akan tampil di bawah ini:</p>
         <div class="dashboard-container">
-          <iframe src="https://datastudio.google.com/embed/reporting/46560b36-afa0-4930-b1ee-262bf5417ad8/page/page_12345" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://datastudio.google.com/embed/reporting/46560b36-afa0-4930-b1ee-262bf5417ad8/page/page_12345" title="Dashboard Data Inventaris" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -297,5 +291,100 @@
   <footer>
     SISTEM INFORMASI MANAJEMEN PERIKANAN <span id="name">KELOMPOK 2 - </span>POKDAKAN
   </footer>
+
+  <script>
+    // Data aset kelompok yang diekstrak secara akurat dari berkas yang dilampirkan
+    const inventoryData = {
+      banyiur: [
+        { no: 1, nama: "Kolam Terpal", jumlah: "13 Unit", pemilik: "Anggota Kelompok", nilai: "Rp 82.000.000", kondisi: "Baik" },
+        { no: 2, nama: "Kolam Tanah", jumlah: "14 Unit", pemilik: "Anggota Kelompok", nilai: "Rp 145.000.000", kondisi: "Baik" },
+        { no: 3, nama: "Pompa Air", jumlah: "2 Unit", pemilik: "Anggota Kelompok", nilai: "Rp 2.800.000", kondisi: "Baik" },
+        { no: 4, nama: "Mesin Jenset", jumlah: "1 Unit", pemilik: "Anggota Kelompok", nilai: "Rp 7.950.000", kondisi: "Baik" }
+      ],
+      gurami_jaya: [
+        { no: 1, nama: "Lahan Budidaya", jumlah: "10 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 750.000.000", kondisi: "Baik" },
+        { no: 2, nama: "Hapa", jumlah: "12 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 2.400.000", kondisi: "Baik" },
+        { no: 3, nama: "Serok", jumlah: "13 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 325.000", kondisi: "Baik" },
+        { no: 4, nama: "Bak Pakan", jumlah: "10 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 200.000", kondisi: "Baik" },
+        { no: 5, nama: "Sarana Penunjang Budidaya", jumlah: "16 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 320.000", kondisi: "Baik" },
+        { no: 6, nama: "Bak Sortir", jumlah: "12 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 420.000", kondisi: "Baik" },
+        { no: 7, nama: "Box Styrofoam", jumlah: "14 Unit", pemilik: "Seluruh Anggota", nilai: "Rp 700.000", kondisi: "Baik" }
+      ],
+      mina_sejahtera: [
+        { no: 1, nama: "Waring", jumlah: "4 Unit", pemilik: "Kelompok", nilai: "Rp 1.700.000", kondisi: "Baik" },
+        { no: 2, nama: "Mesin Pompa Air", jumlah: "1 Unit", pemilik: "Kelompok", nilai: "Rp 3.000.000", kondisi: "Baik" },
+        { no: 3, nama: "Selang Spiral 10 M", jumlah: "1 Unit", pemilik: "Kelompok", nilai: "Rp 700.000", kondisi: "Baik" },
+        { no: 4, nama: "Timbangan 30 kg", jumlah: "1 Unit", pemilik: "Kelompok", nilai: "Rp 250.000", kondisi: "Baik" },
+        { no: 5, nama: "Serok", jumlah: "5 Unit", pemilik: "Kelompok", nilai: "Rp 250.000", kondisi: "Baik" },
+        { no: 6, nama: "Keranjang Panen", jumlah: "5 Unit", pemilik: "Kelompok", nilai: "Rp 500.000", kondisi: "Baik" },
+        { no: 7, nama: "Alat Ukur Kualitas Panen", jumlah: "1 Unit", pemilik: "Kelompok", nilai: "Rp 250.000", kondisi: "Baik" },
+        { no: 8, nama: "Drum Panen", jumlah: "5 Unit", pemilik: "Kelompok", nilai: "Rp 750.000", kondisi: "Baik" },
+        { no: 9, nama: "Drum Pellet", jumlah: "5 Unit", pemilik: "Kelompok", nilai: "Rp 500.000", kondisi: "Baik" }
+      ],
+      gurita: [
+        { no: 1, nama: "Keramba Jaring Tancap (Ibrahim)", jumlah: "2 Petak", pemilik: "Ibrahim", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 2, nama: "Keramba Jaring Tancap (Adi Purnomo)", jumlah: "2 Petak", pemilik: "Adi Purnomo", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 3, nama: "Keramba Jaring Tancap (Wawan)", jumlah: "2 Petak", pemilik: "Wawan", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 4, nama: "Keramba Jaring Tancap (Jalimin)", jumlah: "2 Petak", pemilik: "Jalimin", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 5, nama: "Keramba Jaring Tancap (Hayat)", jumlah: "2 Petak", pemilik: "Hayat", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 6, nama: "Keramba Jaring Tancap (Junaidi)", jumlah: "2 Petak", pemilik: "Junaidi", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 7, nama: "Keramba Jaring Tancap (Adi)", jumlah: "2 Petak", pemilik: "Adi", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 8, nama: "Keramba Jaring Tancap (Fazarani)", jumlah: "2 Petak", pemilik: "Fazarani", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 9, nama: "Keramba Jaring Tancap (Zulpikal)", jumlah: "2 Petak", pemilik: "Zulpikal", nilai: "Rp 45.000.000", kondisi: "Baik" },
+        { no: 10, nama: "Keramba Jaring Tancap (Ibrahim Lakani)", jumlah: "2 Petak", pemilik: "Ibrahim Lakani", nilai: "Rp 45.000.000", kondisi: "Baik" }
+      ]
+    };
+
+    const selectEl = document.getElementById('pokdakan-select');
+    const tbodyEl = document.getElementById('inventory-tbody');
+
+    // Fungsi untuk memperbarui isi tabel
+    function updateTable(groupKey) {
+      const data = inventoryData[groupKey] || [];
+      tbodyEl.innerHTML = '';
+      
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        
+        const tdNo = document.createElement('td');
+        tdNo.textContent = item.no;
+        
+        const tdNama = document.createElement('td');
+        tdNama.textContent = item.nama;
+        
+        const tdJumlah = document.createElement('td');
+        tdJumlah.textContent = item.jumlah;
+        
+        const tdPemilik = document.createElement('td');
+        tdPemilik.textContent = item.pemilik;
+        
+        const tdNilai = document.createElement('td');
+        tdNilai.textContent = item.nilai;
+        
+        const tdKondisi = document.createElement('td');
+        const spanKondisi = document.createElement('span');
+        spanKondisi.className = 'status-badge status-baik';
+        spanKondisi.textContent = item.kondisi;
+        tdKondisi.appendChild(spanKondisi);
+        
+        tr.appendChild(tdNo);
+        tr.appendChild(tdNama);
+        tr.appendChild(tdJumlah);
+        tr.appendChild(tdPemilik);
+        tr.appendChild(tdNilai);
+        tr.appendChild(tdKondisi);
+        
+        tbodyEl.appendChild(tr);
+      });
+    }
+
+    // Event listener saat pilihan dropdown berubah
+    selectEl.addEventListener('change', (e) => {
+      updateTable(e.target.value);
+    });
+
+    // Inisialisasi tampilan pertama (Default: Sahabat Banyiur)
+    updateTable('banyiur');
+  </script>
 </body>
 </html>
