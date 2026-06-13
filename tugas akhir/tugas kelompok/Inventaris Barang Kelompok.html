@@ -95,6 +95,55 @@
       height: 600px;
       border-radius: 8px;
     }
+
+    /* CSS Tambahan untuk Tabel Inventaris */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+    .inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: left;
+      min-width: 600px;
+    }
+    .inventory-table th {
+      background-color: #2caabe;
+      color: white;
+      padding: 0.8rem;
+      font-weight: 600;
+    }
+    .inventory-table td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .inventory-table tr:hover {
+      background-color: #f9fbfd;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .status-baik {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status-rusak-ringan {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .status-rusak-berat {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
     @media (max-width: 768px) {
       .dashboard-container iframe {
         height: 400px;
@@ -104,7 +153,7 @@
       text-align: center;
       padding: 1.2rem 1rem;
       background-color: #2caabe;
-      color: eaf3fb;
+      color: #eaf3fb;
       font-size: 0.9rem;
     }
   </style>
@@ -138,13 +187,82 @@
         <a href="https://docs.google.com/spreadsheets/d/1cSY-WCRF8KInBfxDoiYExICo7IHOIs1B-nOpKTD1JGE/edit?usp=sharing" class="back-button" target="_blank">Lihat Data Inventaris</a>
       </div>
     </div>
+
+    <!-- TAMPILAN BARU: Tabel Daftar Inventaris Barang -->
+    <div class="card">
+      <h2>Daftar Inventaris Barang Saat Ini</h2>
+      <p>Berikut adalah ringkasan daftar barang dan peralatan yang dikelola oleh POKDAKAN. Data ini diperbarui secara berkala sesuai dengan catatan inventaris kelompok.</p>
+      
+      <div class="table-responsive">
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Kode Barang</th>
+              <th>Nama Barang</th>
+              <th>Kategori</th>
+              <th>Jumlah</th>
+              <th>Kondisi</th>
+              <th>Sumber Perolehan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>INV-001</td>
+              <td>Pompa Air Alkon 3 Inch</td>
+              <td>Peralatan Utama</td>
+              <td>2 Unit</td>
+              <td><span class="status-badge status-baik">Baik</span></td>
+              <td>Bantuan Dinas</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>INV-002</td>
+              <td>Jaring Tangkap / Serok Besar</td>
+              <td>Alat Panen</td>
+              <td>5 Pcs</td>
+              <td><span class="status-badge status-baik">Baik</span></td>
+              <td>Swadaya Kelompok</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>INV-003</td>
+              <td>pH Meter Digital</td>
+              <td>Kualitas Air</td>
+              <td>2 Unit</td>
+              <td><span class="status-badge status-rusak-ringan">Rusak Ringan</span></td>
+              <td>Swadaya Kelompok</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>INV-004</td>
+              <td>Aerator Resun LP-60</td>
+              <td>Peralatan Kolam</td>
+              <td>4 Unit</td>
+              <td><span class="status-badge status-baik">Baik</span></td>
+              <td>Bantuan Dinas</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>INV-005</td>
+              <td>Timbangan Digital 150 kg</td>
+              <td>Alat Panen</td>
+              <td>1 Unit</td>
+              <td><span class="status-badge status-rusak-berat">Rusak Berat</span></td>
+              <td>Swadaya Kelompok</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     
     <div class="card">
       <h2>Survei Kepuasan Pengguna</h2>
       <p>Evaluasi layanan adalah proses penilaian sistematis terhadap kinerja, kualitas, efektivitas, dan efisiensi layanan yang diberikan oleh suatu lembaga atau entitas kepada pengguna layanannya.</p>
       <div class="button-container">
-        <a href="https://forms.gle/6CRBGkSWUNv7cypA6" class="back-button" target="_blank">Input Inventaris Barang</a>
-        <a href="https://docs.google.com/spreadsheets/d/1I-lprZhxM4nLWE39uv0OIG9O4q5fdigoHmFr7g6Bruk/edit?usp=sharing" class="back-button" target="_blank">Lihat Data Inventaris</a>
+        <a href="https://forms.gle/6CRBGkSWUNv7cypA6" class="back-button" target="_blank">Isi Survei Kepuasan</a>
+        <a href="https://docs.google.com/spreadsheets/d/1I-lprZhxM4nLWE39uv0OIG9O4q5fdigoHmFr7g6Bruk/edit?usp=sharing" class="back-button" target="_blank">Lihat Hasil Survei</a>
       </div>
     </div>
 
